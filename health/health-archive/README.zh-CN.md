@@ -107,7 +107,7 @@
 ## 脚本示例
 
 ```bash
-python3 scripts/archive_health_record.py --payload-file /tmp/health-archive-payload.json
+python3 scripts/archive_health_record.py --payload-file ./health-archive-payload.json
 ```
 
 ## 使用注意

@@ -59,7 +59,7 @@
 2. 创建 `health-archive` 与 `private-doctor` 标准 skill 目录。
 3. 定义 `~/Documents/personal health` 的本地存储契约。
 4. 实现归档、医生摘要、档案更新、回复渲染与基础校验脚本。
-5. 公开 GitHub 安装入口并发布 `v0.1.0`。
+5. 公开第一版 GitHub 安装入口，并在后续把 health 整套稳定到 `v0.2.0`。
 
 ## Stage 3: Health 整套安装与医生核心能力补齐
 

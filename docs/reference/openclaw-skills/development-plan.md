@@ -59,7 +59,7 @@ Complete.
 2. Created `health-archive` and `private-doctor` as standard skill folders.
 3. Defined the local storage contract for `~/Documents/personal health`.
 4. Implemented the archive, summary, profile-update, and reply-rendering scripts.
-5. Published GitHub install entry points and `v0.1.0`.
+5. Published the first GitHub install entry points, then stabilized the health suite on `v0.2.0`.
 
 ## Stage 3: Health Suite Install and Doctor-Core Completion
 

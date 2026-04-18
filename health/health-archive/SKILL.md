@@ -46,7 +46,7 @@ Read [references/field-map.md](references/field-map.md) when normalizing extract
 5. Run:
 
    ```bash
-   python3 scripts/archive_health_record.py --payload-file /tmp/health-archive-payload.json
+   python3 scripts/archive_health_record.py --payload-file ./health-archive-payload.json
    ```
 
 6. Use the script result as the only source of truth for user-visible status.
@@ -54,7 +54,7 @@ Read [references/field-map.md](references/field-map.md) when normalizing extract
 When a single user message contains multiple archive-worthy items, use:
 
 ```bash
-python3 scripts/archive_health_session.py --payload-file /tmp/health-archive-session.json
+python3 scripts/archive_health_session.py --payload-file ./health-archive-session.json
 ```
 
 ## Payload Minimum

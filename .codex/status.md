@@ -7,7 +7,7 @@
 
 ## Current Phase
 
-Health V1 released.
+Health V1 released; the latest stable patch tag is `v0.2.1`.
 
 ## Active Slice
 
@@ -17,7 +17,7 @@ No active delivery slice. Health V1 is released; future work is optional iterati
 
 - Objective: keep the released `health` suite stable and leave future work optional
 - Plan Link: health V1 released
-- Runway: one checkpoint-sized execution line
+- Runway: one release-maintenance checkpoint at a time
 - Progress: 6 / 6 tasks complete
 - Stop Conditions:
   - the medical scope expands beyond the agreed health-agent V1 boundary
@@ -36,7 +36,7 @@ No active delivery slice. Health V1 is released; future work is optional iterati
 
 - Trigger Level: high
 - Pending Capture: no
-- Last Entry: `docs/devlog/2026-04-18-health-full-capability-planning-retrofit.md`
+- Last Entry: `docs/devlog/2026-04-18-health-v0.2.1-patch-release.md`
 
 ## Architecture Supervision
 - Signal: `green`
@@ -69,11 +69,12 @@ No active delivery slice. Health V1 is released; future work is optional iterati
 - repo-level boundary validator implemented
 - GitHub install reference docs added
 - `scripts/generate_skill_install_manifest.py` implemented
-- public repo and `v0.2.0` release published
+- public repo and `v0.2.1` patch release published
 - public-doc i18n gate converged and passes
 - health roadmap, development plan, architecture, and capability map now target full health-agent V1 closure
 - `health/` now has a stable umbrella suite entry plus `SKILLSET.json`
 - `health-review`, `doctor-brief`, `health-reminders`, and `health-storage-feishu` implemented
+- reply-contract validators now cover `health-review`, `doctor-brief`, `health-reminders`, and `health-storage-feishu`
 - health reset playbook documented
 - CLI acceptance covers install, archive, doctor dialogue, review, brief, reminders, and restore
 

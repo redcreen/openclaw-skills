@@ -48,6 +48,8 @@
 通常会有这几部分：
 
 - `记录状态`
+- `记录内容`
+- `保存位置`
 - `医生判断`
 - `建议`
 - `下一步`
@@ -69,7 +71,7 @@
 
 ```text
 帮我建立健康档案：44岁，178cm，最近主要想控体重和血压
-这是我今天的血压图，记录后告诉我这意味着什么
+这是我今天的血压图
 最近这几天体重一直在降，帮我看看趋势是不是正常
 ```
 
@@ -106,7 +108,7 @@
 ## GitHub 直装
 
 - 正式安装:
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/private-doctor`
 - 开发安装:
   - `安装技能：https://github.com/redcreen/openclaw-skills/tree/main/health/private-doctor`
 - 如果维护者已经发布了 release，可直接把上面的地址粘到 OpenClaw 对话框里。
@@ -125,7 +127,7 @@
 
 ## 使用注意
 
-- 回复要短，但不能缺关键结论
+- 回复要简洁，但不能缺关键结论
 - 只要有新事实进入，就应当让“记录状态”可见
 - 这个 skill 必须负责解读和建议，不能退化成办事员
 - 如果这个 skill 没有亲自看到一次成功归档结果，就必须把记录状态写成 `not verified in this skill`

@@ -225,15 +225,45 @@ def follow_up_points(entries: list[dict[str, Any]], profile: dict[str, Any]) -> 
     return points
 
 
-def render_markdown(start_date: dt.date, end_date: dt.date, profile_lines: list[str], trend_lines: list[str], medication_lines: list[str], symptom_lines: list[str], follow_up: list[str]) -> str:
+def render_markdown(
+    start_date: dt.date,
+    end_date: dt.date,
+    main_concerns: list[str],
+    clinician_snapshot: list[str],
+    profile_lines: list[str],
+    trend_lines: list[str],
+    medication_lines: list[str],
+    symptom_lines: list[str],
+    follow_up: list[str],
+    saved_to: str | None = None,
+) -> str:
     lines = [
         "# Doctor Brief",
         "",
         f"- Brief Window: `{start_date.isoformat()} -> {end_date.isoformat()}`",
+        f"- Saved To: `{saved_to}`" if saved_to else None,
+        "",
+        "## Main Concerns",
+        "",
+    ]
+    lines = [line for line in lines if line is not None]
+    for item in main_concerns:
+        lines.append(f"- {item}")
+    lines.extend([
+        "",
+        "## Clinician Snapshot",
+        "",
+    ])
+    if clinician_snapshot:
+        for item in clinician_snapshot:
+            lines.append(f"- {item}")
+    else:
+        lines.append("- Baseline clinician snapshot is still sparse.")
+    lines.extend([
         "",
         "## Patient Snapshot",
         "",
-    ]
+    ])
     if profile_lines:
         for item in profile_lines:
             lines.append(f"- {item}")
@@ -264,13 +294,17 @@ def render_markdown(start_date: dt.date, end_date: dt.date, profile_lines: list[
     return "\n".join(lines)
 
 
-def save_brief(data_root: Path, end_date: dt.date, markdown: str, payload: dict[str, Any]) -> tuple[str, str]:
+def brief_output_paths(data_root: Path, end_date: dt.date) -> tuple[Path, Path]:
     now = dt.datetime.now().astimezone()
     report_dir = data_root / "reports" / end_date.strftime("%Y") / end_date.strftime("%m") / end_date.strftime("%d")
     report_dir.mkdir(parents=True, exist_ok=True)
     stem = f"{now.strftime('%Y%m%dT%H%M%S%z')}_doctor-brief"
     markdown_path = report_dir / f"{stem}.md"
     json_path = report_dir / f"{stem}.json"
+    return (markdown_path, json_path)
+
+
+def save_brief(markdown_path: Path, json_path: Path, markdown: str, payload: dict[str, Any]) -> tuple[str, str]:
     markdown_path.write_text(markdown, encoding="utf-8")
     json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return (str(markdown_path.resolve()), str(json_path.resolve()))
@@ -296,6 +330,12 @@ def generate_brief(args: argparse.Namespace) -> dict[str, Any]:
     symptom_lines = symptom_summary(entries)
     profile_lines = profile_snapshot(profile)
     follow_up = follow_up_points(entries, profile)
+    main_concerns = symptom_lines[:3] or trend_lines[:3] or ["Recent archived data is still sparse; fill the biggest measurement gaps before the visit."]
+    clinician_snapshot = profile_lines[:]
+    if trend_lines:
+        clinician_snapshot.extend(trend_lines[:2])
+    if not clinician_snapshot:
+        clinician_snapshot = ["Baseline clinician snapshot is still sparse; confirm profile facts and recent measurements."]
 
     payload = {
         "status": "ok",
@@ -305,17 +345,32 @@ def generate_brief(args: argparse.Namespace) -> dict[str, Any]:
             "end_date": end_date.isoformat(),
             "days": args.days,
         },
+        "main_concerns": main_concerns,
+        "clinician_snapshot": clinician_snapshot,
         "profile_snapshot": profile_lines,
         "trend_summary": trend_lines,
         "medication_context": medication_lines,
         "symptom_signals": symptom_lines,
         "follow_up_points": follow_up,
     }
-    payload["markdown"] = render_markdown(start_date, end_date, profile_lines, trend_lines, medication_lines, symptom_lines, follow_up)
     if args.save:
-        markdown_path, json_path = save_brief(data_root, end_date, payload["markdown"], payload)
-        payload["saved_markdown_path"] = markdown_path
-        payload["saved_json_path"] = json_path
+        markdown_path, json_path = brief_output_paths(data_root, end_date)
+        payload["saved_markdown_path"] = str(markdown_path.resolve())
+        payload["saved_json_path"] = str(json_path.resolve())
+    payload["markdown"] = render_markdown(
+        start_date,
+        end_date,
+        main_concerns,
+        clinician_snapshot,
+        profile_lines,
+        trend_lines,
+        medication_lines,
+        symptom_lines,
+        follow_up,
+        payload.get("saved_markdown_path"),
+    )
+    if args.save:
+        save_brief(Path(payload["saved_markdown_path"]), Path(payload["saved_json_path"]), payload["markdown"], payload)
     return payload
 
 

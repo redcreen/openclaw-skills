@@ -219,7 +219,16 @@ def review_takeaways(entries: list[dict[str, Any]], mode: str) -> tuple[list[str
     return (highlights, next_focus)
 
 
-def render_markdown(mode: str, start_date: dt.date, end_date: dt.date, record_count: int, highlights: list[str], next_focus: list[str]) -> str:
+def render_markdown(
+    mode: str,
+    start_date: dt.date,
+    end_date: dt.date,
+    record_count: int,
+    main_takeaway: str,
+    what_changed: list[str],
+    next_focus: list[str],
+    saved_to: str | None = None,
+) -> str:
     title = {
         "daily": "Daily Health Review",
         "weekly": "Weekly Health Review",
@@ -231,11 +240,17 @@ def render_markdown(mode: str, start_date: dt.date, end_date: dt.date, record_co
         "",
         f"- Review Window: `{start_date.isoformat()} -> {end_date.isoformat()}`",
         f"- Records Included: `{record_count}`",
+        f"- Saved To: `{saved_to}`" if saved_to else None,
         "",
-        "## Main Takeaways",
+        "## Main Takeaway",
+        "",
+        f"- {main_takeaway}",
+        "",
+        "## What Changed",
         "",
     ]
-    for item in highlights:
+    lines = [line for line in lines if line is not None]
+    for item in what_changed:
         lines.append(f"- {item}")
     lines.extend(["", "## Next Focus", ""])
     for item in next_focus:
@@ -244,13 +259,17 @@ def render_markdown(mode: str, start_date: dt.date, end_date: dt.date, record_co
     return "\n".join(lines)
 
 
-def save_review(data_root: Path, mode: str, end_date: dt.date, markdown: str, payload: dict[str, Any]) -> tuple[str, str]:
+def review_output_paths(data_root: Path, mode: str, end_date: dt.date) -> tuple[Path, Path]:
     now = dt.datetime.now().astimezone()
     review_dir = data_root / "reviews" / end_date.strftime("%Y") / end_date.strftime("%m") / end_date.strftime("%d")
     review_dir.mkdir(parents=True, exist_ok=True)
     stem = f"{now.strftime('%Y%m%dT%H%M%S%z')}_{mode}-review"
     markdown_path = review_dir / f"{stem}.md"
     json_path = review_dir / f"{stem}.json"
+    return (markdown_path, json_path)
+
+
+def save_review(markdown_path: Path, json_path: Path, markdown: str, payload: dict[str, Any]) -> tuple[str, str]:
     markdown_path.write_text(markdown, encoding="utf-8")
     json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return (str(markdown_path.resolve()), str(json_path.resolve()))
@@ -265,6 +284,7 @@ def generate_review(args: argparse.Namespace) -> dict[str, Any]:
     start_date = end_date - dt.timedelta(days=days - 1)
     entries = filter_entries(load_archive_entries(data_root / "archive-log.jsonl"), start_date, end_date)
     highlights, next_focus = review_takeaways(entries, args.mode)
+    main_takeaway = highlights[0] if highlights else "This window still needs more archived records before strong trend conclusions."
     payload = {
         "status": "ok",
         "mode": args.mode,
@@ -275,14 +295,27 @@ def generate_review(args: argparse.Namespace) -> dict[str, Any]:
             "days": days,
         },
         "record_count": len(entries),
+        "main_takeaway": main_takeaway,
+        "what_changed": highlights,
         "highlights": highlights,
         "next_focus": next_focus,
     }
-    payload["markdown"] = render_markdown(args.mode, start_date, end_date, len(entries), highlights, next_focus)
     if args.save:
-        markdown_path, json_path = save_review(data_root, args.mode, end_date, payload["markdown"], payload)
-        payload["saved_markdown_path"] = markdown_path
-        payload["saved_json_path"] = json_path
+        markdown_path, json_path = review_output_paths(data_root, args.mode, end_date)
+        payload["saved_markdown_path"] = str(markdown_path.resolve())
+        payload["saved_json_path"] = str(json_path.resolve())
+    payload["markdown"] = render_markdown(
+        args.mode,
+        start_date,
+        end_date,
+        len(entries),
+        main_takeaway,
+        highlights,
+        next_focus,
+        payload.get("saved_markdown_path"),
+    )
+    if args.save:
+        save_review(Path(payload["saved_markdown_path"]), Path(payload["saved_json_path"]), payload["markdown"], payload)
     return payload
 
 

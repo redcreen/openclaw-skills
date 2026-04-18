@@ -46,6 +46,7 @@ Every backup or restore reply should show:
 - `What Was Included`
 
 Keep the reply factual and explicit.
+Do not collapse a backup or restore result into a one-line success message when the bundle path or restore target matters.
 
 ## Non-Goals
 

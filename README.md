@@ -54,12 +54,12 @@ Install either the suite entry or the exact skill folder you need.
 After the repository is published, prefer a copy-paste GitHub URL in the OpenClaw chat instead of asking users to browse the repo manually.
 
 - stable suite install should be pinned to a tag:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health`
 - stable single-skill install may also be pinned to the same tag:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/private-doctor`
 - development install may point to `main`:
   - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health`
-- maintainers can generate the exact prompts with `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health`
+- maintainers can generate the exact prompts with `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.1 --domain health`
 
 ## Skill Documentation
 

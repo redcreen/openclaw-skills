@@ -195,7 +195,10 @@ def update_workspace_prompts(workspace: Path, data_root: Path) -> None:
 - On new health input: archive first, then interpret and advise.
 - If the user sends a likely health image or short health fact, assume they want health help even if they do not know the right prompt.
 - Do not wait for the user to say \"act like a family doctor\" or \"please record this\".
-- If the profile is sparse, give a short interpretation first and then ask only the next 1-3 highest-value onboarding questions.
+- On new archive-worthy health evidence, make the archive result explicit: record status, recorded facts, and saved location.
+- After the archive result, give a brief but complete doctor interpretation plus the next practical action.
+- If the profile is sparse, interpret first and then ask only the next 1-3 highest-value onboarding questions.
+- Do not collapse a processed health-image reply into a one-line answer.
 """
     memory_block = f"""## 当前系统真相（Health V1 升级后）
 

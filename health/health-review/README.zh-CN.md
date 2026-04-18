@@ -68,7 +68,7 @@
 ## GitHub 直装
 
 - 正式安装:
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-review`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-review`
 - 开发安装:
   - `安装技能：https://github.com/redcreen/openclaw-skills/tree/main/health/health-review`
 

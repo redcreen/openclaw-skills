@@ -1,6 +1,6 @@
 ---
 name: health-review
-description: Generate daily, weekly, or monthly health reviews from the local health workspace. Use when the user wants trend-based follow-up, periodic summaries, or a short review grounded in archived weight, blood pressure, exercise, symptom, and medication records.
+description: Generate daily, weekly, or monthly health reviews from the local health workspace. Use when the user wants trend-based follow-up, periodic summaries, or a brief review grounded in archived weight, blood pressure, exercise, symptom, and medication records.
 ---
 
 # Health Review
@@ -13,7 +13,7 @@ This skill turns the local health workspace into review outputs. It is the longi
 
 - the user asks for a daily, weekly, or monthly health review
 - the user wants trend-based follow-up rather than one-shot interpretation
-- the user wants the recent records summarized into a short review file
+- the user wants the recent records summarized into a structured review file
 
 ## Working Contract
 
@@ -50,7 +50,8 @@ Every user-visible review reply should include:
 - `What Changed`
 - `Next Focus`
 
-Keep the reply concise and grounded in archived records.
+Keep the reply brief, explicit, and grounded in archived records.
+Do not collapse a saved review result into a one-line answer; when a review file was written, make the review window and saved path visible.
 
 ## Non-Goals
 

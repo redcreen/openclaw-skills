@@ -49,7 +49,8 @@ Every user-visible brief reply should include:
 - `Clinician Snapshot`
 - `Saved To`
 
-Keep the brief concise, structured, and clinically readable.
+Keep the brief structured, clinically readable, and explicit about what was generated and where it was saved.
+Do not collapse a generated brief result into a one-line answer when a saved brief path is available.
 
 ## Non-Goals
 

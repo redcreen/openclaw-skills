@@ -68,7 +68,7 @@ The remaining roadmap focus is now mostly on release closure, migration playbook
 The user should not need to learn a special way to prompt it first.
 
 1. install the full suite entry first:
-   `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health`
+   `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health`
 2. after installation, just send a health image or say one natural health sentence.
 
 The suite should infer whether this is:
@@ -99,12 +99,15 @@ The desired interaction is not:
 It should instead do three things:
 
 - clearly show record status
+- show what it actually recorded and where it saved it
 - give the doctor view
 - give one short advice or next step
 
 That means the user-facing shape should stay close to:
 
 - `Record Status`
+- `Recorded`
+- `Saved To`
 - `Doctor View`
 - `Advice / Plan`
 
@@ -178,23 +181,23 @@ The runtime still stays modular inside `health/`; the suite entry is a distribut
 After publishing, you can send either the full-suite install URL or the exact single-skill URL.
 
 - full `health` suite install
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health`
   - development install: `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health`
 
 - `health-archive`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-archive`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-archive`
 - `private-doctor`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/private-doctor`
 - `health-review`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-review`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-review`
 - `doctor-brief`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/doctor-brief`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/doctor-brief`
 - `health-reminders`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-reminders`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-reminders`
 - `health-storage-feishu`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-storage-feishu`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-storage-feishu`
 - maintainer batch generation:
-  - `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health`
+  - `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.1 --domain health`
 
 ## Data Root
 

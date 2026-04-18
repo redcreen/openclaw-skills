@@ -45,7 +45,7 @@ In most cases the result should show:
 ## GitHub Direct Install
 
 - stable install:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-storage-feishu`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-storage-feishu`
 - development install:
   - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-storage-feishu`
 

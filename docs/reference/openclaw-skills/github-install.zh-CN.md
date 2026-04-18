@@ -13,9 +13,9 @@
 正式发布优先固定到 tag：
 
 ```text
-安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health
-安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-archive
-安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor
+安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health
+安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-archive
+安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/private-doctor
 ```
 
 开发调试时可以临时指向 `main`：
@@ -27,11 +27,11 @@
 ## 维护者发布步骤
 
 1. 把仓库发布到 GitHub。
-2. 为对外可安装版本打 tag，例如 `v0.2.0`。
+2. 为对外可安装版本打 tag，例如 `v0.2.1`。
 3. 运行生成器：
 
 ```bash
-python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health --format markdown
+python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.1 --domain health --format markdown
 ```
 
 4. 把生成出来的 GitHub URL 或 `安装技能：...` 提示词贴到 release note、README 或交付文档里。

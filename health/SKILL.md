@@ -55,7 +55,7 @@ Default behavior:
    - medication
    - unknown-but-health-related
 3. If the evidence is clear enough, archive it immediately.
-4. After archiving, continue in the same turn with doctor-style interpretation.
+4. After archiving, continue in the same turn with doctor-style interpretation and explicit record outcome.
 5. If baseline profile facts are still missing, ask only the next 1-3 highest-value questions after the interpretation instead of dumping a large questionnaire.
 6. If the image is unclear, ask one short clarifying question and keep the conversation in doctor mode.
 
@@ -74,13 +74,17 @@ When this is the first obvious health interaction or the profile is sparse:
 - do not stop at `I recorded it`
 - do not force the user to learn a schema
 - treat the incoming image or fact as the start of onboarding
-- give one short interpretation now
+- make the archive result visible
+- give one complete but compact interpretation now
 - ask the smallest missing set of facts needed for better follow-up
 
 Example first-contact pattern:
 
 - `Record Status`
+- `Recorded`
+- `Saved To`
 - `Doctor View`
+- `Advice`
 - `Next Questions`
 
 Typical next questions should be things like:
@@ -93,9 +97,11 @@ Typical next questions should be things like:
 
 ## Default Reply Shape
 
-When new health evidence arrives, keep the user-visible structure short and stable:
+When new health evidence arrives, keep the user-visible structure brief but complete:
 
 - `Record Status`
+- `Recorded`
+- `Saved To`
 - `Doctor View`
 - `Advice`
 - `Plan` when a follow-up step matters
@@ -103,6 +109,8 @@ When new health evidence arrives, keep the user-visible structure short and stab
 When the request is about reviews, briefs, reminders, or backup, keep the reply factual and explicit about what was written and where.
 
 When the profile is incomplete, add `Next Questions` with only the smallest useful set instead of requiring the user to ask how to continue.
+
+Do not collapse a new-image health reply into a one-liner. If new evidence was processed, the reply must make the archive outcome and next action visible.
 
 ## Non-Goals
 

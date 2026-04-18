@@ -31,7 +31,7 @@ This playbook defines the safe path for replacing the old health agent with the 
 Use the stable suite entry:
 
 ```text
-Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health
+Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health
 ```
 
 If you only want one focused workflow, you can still install a single nested skill such as `health/health-archive/`, but the reset path should normally use the full suite.
@@ -62,7 +62,7 @@ After restore, confirm:
 Repository-level acceptance is already covered by:
 
 ```bash
-python3 scripts/accept_health_suite.py --repo redcreen/openclaw-skills --ref v0.2.0
+python3 scripts/accept_health_suite.py --repo redcreen/openclaw-skills --ref v0.2.1
 ```
 
 That acceptance chain proves:

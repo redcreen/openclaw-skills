@@ -54,12 +54,12 @@ openclaw-skills/
 发布后，推荐直接把单个 skill 的 GitHub 地址粘到 OpenClaw 对话框里，而不是让用户手动找目录。
 
 - 正式整套安装建议固定到 tag:
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health`
 - 单 skill 稳定安装也固定到同一 tag:
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/private-doctor`
 - 开发安装可以指向 `main`:
   - `安装技能：https://github.com/redcreen/openclaw-skills/tree/main/health`
-- 维护者可用 `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health` 批量生成安装地址和可复制提示词。
+- 维护者可用 `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.1 --domain health` 批量生成安装地址和可复制提示词。
 
 ## 文档入口
 

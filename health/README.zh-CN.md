@@ -70,7 +70,7 @@
 正常路径应该只有一件事：
 
 1. 先安装整套入口：
-   `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health`
+   `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health`
 2. 安装完成后，直接自然地发健康图片或说一句健康相关的话就行。
 
 它应该自己判断当前是在做：
@@ -101,12 +101,15 @@
 而应该是：
 
 - 先明确告诉你有没有真的写入
+- 再告诉你这次具体记住了什么、写到了哪里
 - 再告诉你这组数据怎么看
 - 最后给一个短建议或下一步
 
 也就是：
 
 - `记录状态`
+- `记录内容`
+- `保存位置`
 - `医生判断`
 - `建议 / 下一步`
 
@@ -180,23 +183,23 @@
 发布后，可以直接发整套安装地址，也可以发单个 skill 地址。
 
 - `health` 整套安装
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health`
   - 开发安装: `安装技能：https://github.com/redcreen/openclaw-skills/tree/main/health`
 
 - `health-archive`
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-archive`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-archive`
 - `private-doctor`
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/private-doctor`
 - `health-review`
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-review`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-review`
 - `doctor-brief`
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/doctor-brief`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/doctor-brief`
 - `health-reminders`
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-reminders`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-reminders`
 - `health-storage-feishu`
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-storage-feishu`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-storage-feishu`
 - 维护者批量生成:
-  - `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health`
+  - `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.1 --domain health`
 
 ## 数据根目录
 

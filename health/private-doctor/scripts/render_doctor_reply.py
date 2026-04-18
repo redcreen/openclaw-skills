@@ -29,6 +29,31 @@ GAP_LABELS = {
     },
 }
 
+ENTRY_LABELS = {
+    "zh": {
+        "weight": "体重",
+        "blood-pressure": "血压",
+        "exercise-walk": "步行",
+        "exercise-run": "跑步",
+        "exercise-swim": "游泳",
+        "sleep": "睡眠",
+        "symptom": "症状",
+        "medication": "用药",
+        "unknown-health": "健康记录",
+    },
+    "en": {
+        "weight": "Weight",
+        "blood-pressure": "Blood pressure",
+        "exercise-walk": "Walking",
+        "exercise-run": "Running",
+        "exercise-swim": "Swimming",
+        "sleep": "Sleep",
+        "symptom": "Symptom",
+        "medication": "Medication",
+        "unknown-health": "Health record",
+    },
+}
+
 
 class ReplyRenderError(Exception):
     """Raised when reply rendering inputs are invalid."""
@@ -78,6 +103,24 @@ def language_map(language: str) -> dict[str, str]:
     return GAP_LABELS.get(language, GAP_LABELS["zh"])
 
 
+def entry_label(entry_type: str | None, language: str) -> str:
+    labels = ENTRY_LABELS.get(language, ENTRY_LABELS["zh"])
+    if not entry_type:
+        return "健康记录" if language == "zh" else "Health record"
+    return labels.get(entry_type, entry_type)
+
+
+def format_value(value: Any) -> str:
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if isinstance(value, int):
+        return str(value)
+    if isinstance(value, float):
+        rendered = f"{value:.2f}".rstrip("0").rstrip(".")
+        return rendered or "0"
+    return str(value)
+
+
 def join_sentences(sentences: list[str], language: str) -> str:
     separator = "" if language == "zh" else " "
     return separator.join(sentence for sentence in sentences if sentence)
@@ -119,6 +162,109 @@ def archive_status(archive_result: dict[str, Any] | None, language: str) -> tupl
         "observed-write-result",
         "未入档" if language == "zh" else "Not archived",
     )
+
+
+def recorded_text(archive_result: dict[str, Any] | None, language: str) -> str | None:
+    if not archive_result:
+        return None
+
+    status = str(archive_result.get("status") or "").strip().lower()
+    entry_type = str(archive_result.get("entry_type") or "").strip().lower()
+    recorded_on = str(archive_result.get("recorded_on") or "").strip()
+    fields = archive_result.get("fields")
+    if not isinstance(fields, dict):
+        fields = {}
+
+    if status == "not archived":
+        error = str(archive_result.get("error") or "").strip()
+        if language == "zh":
+            return f"未写入新的本地记录；原因：{error}" if error else "未写入新的本地记录。"
+        return f"No new local record was written; reason: {error}" if error else "No new local record was written."
+
+    if entry_type == "weight" and isinstance(fields.get("weight_kg"), (int, float)):
+        weight = format_value(fields["weight_kg"])
+        return (
+            f"体重 {weight} kg（{recorded_on}）"
+            if language == "zh"
+            else f"Weight {weight} kg ({recorded_on})"
+        )
+    if entry_type == "blood-pressure":
+        systolic = fields.get("systolic_mmhg")
+        diastolic = fields.get("diastolic_mmhg")
+        pulse = fields.get("pulse_bpm")
+        if isinstance(systolic, (int, float)) and isinstance(diastolic, (int, float)):
+            bp_text = (
+                f"血压 {format_value(systolic)}/{format_value(diastolic)} mmHg"
+                if language == "zh"
+                else f"Blood pressure {format_value(systolic)}/{format_value(diastolic)} mmHg"
+            )
+            if isinstance(pulse, (int, float)):
+                pulse_text = (
+                    f"，脉搏 {format_value(pulse)} 次/分"
+                    if language == "zh"
+                    else f", pulse {format_value(pulse)} bpm"
+                )
+                bp_text += pulse_text
+            return f"{bp_text}（{recorded_on}）" if language == "zh" else f"{bp_text} ({recorded_on})"
+    if entry_type.startswith("exercise-"):
+        if isinstance(fields.get("steps"), (int, float)):
+            steps = format_value(fields["steps"])
+            return (
+                f"{entry_label(entry_type, language)} {steps} 步（{recorded_on}）"
+                if language == "zh"
+                else f"{entry_label(entry_type, language)} {steps} steps ({recorded_on})"
+            )
+
+    visible_pairs = []
+    for key, value in fields.items():
+        visible_pairs.append(f"{key}={format_value(value)}")
+        if len(visible_pairs) >= 3:
+            break
+    if visible_pairs:
+        pairs_text = "，".join(visible_pairs) if language == "zh" else ", ".join(visible_pairs)
+        return (
+            f"{entry_label(entry_type, language)}：{pairs_text}（{recorded_on}）"
+            if language == "zh"
+            else f"{entry_label(entry_type, language)}: {pairs_text} ({recorded_on})"
+        )
+    return (
+        f"{entry_label(entry_type, language)}（{recorded_on}）"
+        if language == "zh"
+        else f"{entry_label(entry_type, language)} ({recorded_on})"
+    )
+
+
+def saved_to_text(archive_result: dict[str, Any] | None, language: str) -> str | None:
+    if not archive_result:
+        return None
+
+    status = str(archive_result.get("status") or "").strip().lower()
+    if status == "not archived":
+        error = str(archive_result.get("error") or "").strip()
+        if language == "zh":
+            return f"本次未写入本地记录；原因：{error}" if error else "本次未写入本地记录。"
+        return f"Nothing was written locally; reason: {error}" if error else "Nothing was written locally."
+
+    record_path = str(archive_result.get("record_path") or "").strip()
+    record_label = Path(record_path).name if record_path else ("records.md" if language == "zh" else "records.md")
+    raw_files = archive_result.get("raw_files")
+    raw_labels: list[str] = []
+    if isinstance(raw_files, list):
+        for item in raw_files[:2]:
+            if not isinstance(item, dict):
+                continue
+            saved_path = str(item.get("saved_path") or "").strip()
+            if saved_path:
+                raw_labels.append(saved_path)
+
+    if raw_labels:
+        joined = "、".join(raw_labels) if language == "zh" else ", ".join(raw_labels)
+        return (
+            f"{record_label}；原图：{joined}"
+            if language == "zh"
+            else f"{record_label}; raw evidence: {joined}"
+        )
+    return record_label
 
 
 def weight_sentence(summary: dict[str, Any], language: str) -> str | None:
@@ -302,11 +448,19 @@ def render_markdown(mode: str, language: str, sections: dict[str, Any]) -> str:
         lines = []
         if mode == "onboarding":
             lines.append(f"记录状态：{sections['record_status']}")
+            if sections.get("recorded"):
+                lines.append(f"记录内容：{sections['recorded']}")
+            if sections.get("saved_to"):
+                lines.append(f"保存位置：{sections['saved_to']}")
             lines.append(f"档案状态：{sections['profile_status']}")
             lines.append(f"医生判断：{sections['doctor_view']}")
             lines.append(f"下一步问题：{sections['next_questions']}")
             return "\n".join(lines)
         lines.append(f"记录状态：{sections['record_status']}")
+        if sections.get("recorded"):
+            lines.append(f"记录内容：{sections['recorded']}")
+        if sections.get("saved_to"):
+            lines.append(f"保存位置：{sections['saved_to']}")
         lines.append(f"医生判断：{sections['doctor_view']}")
         lines.append(f"建议：{sections['advice']}")
         if sections.get("plan"):
@@ -316,11 +470,19 @@ def render_markdown(mode: str, language: str, sections: dict[str, Any]) -> str:
     lines = []
     if mode == "onboarding":
         lines.append(f"Record Status: {sections['record_status']}")
+        if sections.get("recorded"):
+            lines.append(f"Recorded: {sections['recorded']}")
+        if sections.get("saved_to"):
+            lines.append(f"Saved To: {sections['saved_to']}")
         lines.append(f"Profile Status: {sections['profile_status']}")
         lines.append(f"Doctor View: {sections['doctor_view']}")
         lines.append(f"Next Questions: {sections['next_questions']}")
         return "\n".join(lines)
     lines.append(f"Record Status: {sections['record_status']}")
+    if sections.get("recorded"):
+        lines.append(f"Recorded: {sections['recorded']}")
+    if sections.get("saved_to"):
+        lines.append(f"Saved To: {sections['saved_to']}")
     lines.append(f"Doctor View: {sections['doctor_view']}")
     lines.append(f"Advice: {sections['advice']}")
     if sections.get("plan"):
@@ -332,11 +494,15 @@ def render_reply(summary: dict[str, Any], archive_result: dict[str, Any] | None,
     record_status_code, archive_status_source, record_status_text = archive_status(archive_result, language)
     doctor_view_text, watchpoint = doctor_view(summary, mode, language)
     plan_text = plan(summary, mode, language)
+    recorded = recorded_text(archive_result, language)
+    saved_to = saved_to_text(archive_result, language)
 
     if mode == "onboarding":
         profile_status_code, profile_status_text = profile_status(summary, language)
         sections = {
             "record_status": record_status_text,
+            "recorded": recorded,
+            "saved_to": saved_to,
             "profile_status": profile_status_text,
             "doctor_view": doctor_view_text,
             "next_questions": plan_text or (
@@ -357,6 +523,8 @@ def render_reply(summary: dict[str, Any], archive_result: dict[str, Any] | None,
 
     sections = {
         "record_status": record_status_text,
+        "recorded": recorded,
+        "saved_to": saved_to,
         "doctor_view": doctor_view_text,
         "advice": advice(summary, mode, language, watchpoint),
         "plan": plan_text,

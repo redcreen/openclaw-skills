@@ -287,6 +287,17 @@ def main() -> int:
             ],
             env=env,
         )
+        review_path = temp_root / "review.json"
+        write_json(review_path, review)
+        review_validation = run_json(
+            [
+                sys.executable,
+                skill_script(skill_base_root, "health-review", "validate_health_review.py"),
+                "--review-file",
+                str(review_path),
+            ],
+            env=env,
+        )
 
         brief = run_json(
             [
@@ -297,6 +308,17 @@ def main() -> int:
                 "--days",
                 "30",
                 "--save",
+            ],
+            env=env,
+        )
+        brief_path = temp_root / "brief.json"
+        write_json(brief_path, brief)
+        brief_validation = run_json(
+            [
+                sys.executable,
+                skill_script(skill_base_root, "doctor-brief", "validate_doctor_brief.py"),
+                "--brief-file",
+                str(brief_path),
             ],
             env=env,
         )
@@ -349,6 +371,17 @@ def main() -> int:
             ],
             env=env,
         )
+        due_reminders_path = temp_root / "due-reminders.json"
+        write_json(due_reminders_path, due_reminders)
+        reminder_validation = run_json(
+            [
+                sys.executable,
+                skill_script(skill_base_root, "health-reminders", "validate_reminder_reply.py"),
+                "--reply-file",
+                str(due_reminders_path),
+            ],
+            env=env,
+        )
 
         export_bundle = run_json(
             [
@@ -358,6 +391,17 @@ def main() -> int:
                 str(data_root),
                 "--format",
                 "zip",
+            ],
+            env=env,
+        )
+        export_bundle_path = temp_root / "export-bundle.json"
+        write_json(export_bundle_path, export_bundle)
+        export_validation = run_json(
+            [
+                sys.executable,
+                skill_script(skill_base_root, "health-storage-feishu", "validate_bundle_reply.py"),
+                "--reply-file",
+                str(export_bundle_path),
             ],
             env=env,
         )
@@ -372,6 +416,17 @@ def main() -> int:
                 "--data-root",
                 str(restore_root),
                 "--overwrite",
+            ],
+            env=env,
+        )
+        restore_bundle_path = temp_root / "restore-bundle.json"
+        write_json(restore_bundle_path, restore_bundle)
+        restore_validation = run_json(
+            [
+                sys.executable,
+                skill_script(skill_base_root, "health-storage-feishu", "validate_bundle_reply.py"),
+                "--reply-file",
+                str(restore_bundle_path),
             ],
             env=env,
         )
@@ -391,6 +446,11 @@ def main() -> int:
             "assessment_status": assessment["status"],
             "rendered_reply_status": rendered_reply["status"],
             "validated_reply_status": validated_reply["status"],
+            "review_validation_status": review_validation["status"],
+            "brief_validation_status": brief_validation["status"],
+            "reminder_validation_status": reminder_validation["status"],
+            "export_validation_status": export_validation["status"],
+            "restore_validation_status": restore_validation["status"],
             "review_saved_markdown_path": review.get("saved_markdown_path"),
             "brief_saved_markdown_path": brief.get("saved_markdown_path"),
             "due_reminder_count": due_reminders.get("due_count"),

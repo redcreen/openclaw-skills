@@ -26,14 +26,15 @@ Owns all health-related OpenClaw skills under `health/`, including local-first a
 - `health-reminders` persists reminder plans and due-check snapshots
 - `health-storage-feishu` exports and restores portable local bundles
 - per-skill GitHub install templates and a real public release exist
+- patch-release validator coverage now exists for review, brief, reminder, and bundle replies
 - the roadmap, development plan, and capability map now describe the closed health V1 delivery
 - reset and migration guidance exists
 - CLI acceptance covers the full suite
 
 ## Remaining Steps
-1. Publish the stable release tag and bind stable docs to it.
-2. Preserve future optional Feishu-adapter expansion without reintroducing a non-local-first dependency.
-3. Improve experience quality after V1 without breaking the suite contract.
+1. Preserve future optional Feishu-adapter expansion without reintroducing a non-local-first dependency.
+2. Improve experience quality after V1 without breaking the released suite contract.
+3. Reopen the module only when a real post-V1 slice or regression appears.
 
 ## Completion Signal
 
@@ -41,4 +42,4 @@ The module is complete when a reset old health agent can be replaced by a one-co
 
 ## Next Checkpoint
 
-Publish and verify the stable tagged release.
+Reopen only when a new post-V1 health slice or regression-control patch is needed.

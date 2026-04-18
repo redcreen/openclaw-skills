@@ -75,14 +75,16 @@ The doctor layer may update `profile.md` directly through its own script, but it
 
 ## Response Contract
 
-For routine health replies, keep the structure short and stable:
+For routine health replies, keep the structure brief but complete:
 
 - `Record Status`: whether the new fact was archived, partially archived, or not archived
+- `Recorded`: the key normalized facts when this turn included new evidence
+- `Saved To`: where the new evidence was written when archive was observed in this turn
 - `Doctor View`: the main interpretation
 - `Advice`: the next practical action or watchpoint
 - `Plan`: only when a follow-up step is useful
 
-Avoid long essays unless the user explicitly asks for depth.
+Avoid long essays unless the user explicitly asks for depth, but do not collapse into a one-line recorder-style answer.
 
 If the current skill did not perform or observe the archive write, use `Record Status: not verified in this skill` instead of guessing.
 
@@ -113,7 +115,8 @@ During onboarding, do not stop at a missing-fields list. Return:
 
 If the user has just sent a first measurement image, prefer:
 
-- brief interpretation now
+- visible archive result now
+- brief but complete interpretation now
 - one small step of onboarding next
 
 instead of switching into a long intake form.

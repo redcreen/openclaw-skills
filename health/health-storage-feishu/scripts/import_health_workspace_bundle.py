@@ -62,6 +62,28 @@ def restore_json(bundle_path: Path, data_root: Path) -> list[str]:
     return [str(item) for item in payload.get("files", [])]
 
 
+def render_bundle_markdown(
+    bundle_status: str,
+    source_or_target: str,
+    saved_to: str,
+    what_was_included: list[str],
+) -> str:
+    lines = [
+        "# Health Bundle Result",
+        "",
+        f"- Bundle Status: `{bundle_status}`",
+        f"- Source Or Target: `{source_or_target}`",
+        f"- Saved To: `{saved_to}`",
+        "",
+        "## What Was Included",
+        "",
+    ]
+    for item in what_was_included:
+        lines.append(f"- {item}")
+    lines.append("")
+    return "\n".join(lines)
+
+
 def main() -> int:
     args = parse_args()
     try:
@@ -80,11 +102,22 @@ def main() -> int:
 
         result = {
             "status": "ok",
+            "operation": "restore",
             "bundle_path": str(bundle_path.resolve()),
             "data_root": str(data_root.resolve()),
             "restored_count": len(restored),
             "restored_files": restored,
+            "bundle_status": "bundle restored",
+            "source_or_target": str(bundle_path.resolve()),
+            "saved_to": str(data_root.resolve()),
+            "what_was_included": restored or ["Bundle contained no restorable workspace files."],
         }
+        result["markdown"] = render_bundle_markdown(
+            result["bundle_status"],
+            result["source_or_target"],
+            result["saved_to"],
+            result["what_was_included"],
+        )
         print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
         return 0
     except (ImportError, json.JSONDecodeError) as exc:

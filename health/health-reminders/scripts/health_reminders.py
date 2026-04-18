@@ -232,19 +232,66 @@ def due_now(rule: dict[str, Any], at_time: dt.datetime, window_minutes: int) -> 
     return delta_minutes <= max(window_minutes, 1)
 
 
-def render_due_markdown(at_time: dt.datetime, due_rules: list[dict[str, Any]]) -> str:
+def summarize_due_rules(due_rules: list[dict[str, Any]], at_time: dt.datetime) -> tuple[str, list[str], list[str], list[str]]:
+    if not due_rules:
+        return (
+            "no reminders due",
+            ["No active reminder is due right now."],
+            ["No enabled rule matched the current due window."],
+            ["Keep following the current plan and check again at the next reminder window."],
+        )
+
+    what_is_due: list[str] = []
+    why_it_is_due: list[str] = []
+    what_to_do_next: list[str] = []
+    for rule in due_rules:
+        label = str(rule.get("label") or "Reminder").strip()
+        kind = str(rule.get("kind") or "general").strip()
+        target_entry_type = str(rule.get("target_entry_type") or "").strip()
+        time_local = str(rule.get("time_local") or "unspecified")
+        message = str(rule.get("message") or label).strip()
+        what_is_due.append(f"{label}: {message}")
+        reason_target = target_entry_type or kind
+        why_it_is_due.append(
+            f"{label} is scheduled for {time_local}, and no matching {reason_target} record has been archived for {at_time.date().isoformat()}."
+        )
+        if kind == "measurement":
+            what_to_do_next.append(f"Record the planned measurement for {label} and rerun the due check if needed.")
+        elif kind == "medication":
+            what_to_do_next.append(f"Take or confirm the medication for {label}, then archive it if that is part of the workflow.")
+        elif kind == "exercise":
+            what_to_do_next.append(f"Complete the planned exercise for {label} or adjust the rule if the schedule has changed.")
+        elif kind == "review":
+            what_to_do_next.append(f"Complete the planned health review for {label} and save the result.")
+        else:
+            what_to_do_next.append(f"Handle {label} now or update the reminder rule if this is no longer needed.")
+    return ("due now", what_is_due, why_it_is_due, what_to_do_next)
+
+
+def render_due_markdown(
+    at_time: dt.datetime,
+    reminder_status: str,
+    what_is_due: list[str],
+    why_it_is_due: list[str],
+    what_to_do_next: list[str],
+) -> str:
     lines = [
         "# Due Health Reminders",
         "",
         f"- Checked At: `{at_time.isoformat()}`",
+        f"- Reminder Status: `{reminder_status}`",
+        "",
+        "## What Is Due",
         "",
     ]
-    if not due_rules:
-        lines.append("- No reminders are due right now.")
-        lines.append("")
-        return "\n".join(lines)
-    for rule in due_rules:
-        lines.append(f"- {rule['label']}: {rule['message']}")
+    for item in what_is_due:
+        lines.append(f"- {item}")
+    lines.extend(["", "## Why It Is Due", ""])
+    for item in why_it_is_due:
+        lines.append(f"- {item}")
+    lines.extend(["", "## What To Do Next", ""])
+    for item in what_to_do_next:
+        lines.append(f"- {item}")
     lines.append("")
     return "\n".join(lines)
 
@@ -273,14 +320,19 @@ def due_check(data_root: Path, at_value: str | None, window_minutes: int, save: 
             continue
         if due_now(rule, at_time, window_minutes) and not satisfied_today(rule, entries, today):
             due_rules.append(rule)
+    reminder_status, what_is_due, why_it_is_due, what_to_do_next = summarize_due_rules(due_rules, at_time)
     payload = {
         "status": "ok",
         "checked_at": at_time.isoformat(),
         "data_root": str(data_root.resolve()),
         "due_count": len(due_rules),
         "due_rules": due_rules,
+        "reminder_status": reminder_status,
+        "what_is_due": what_is_due,
+        "why_it_is_due": why_it_is_due,
+        "what_to_do_next": what_to_do_next,
     }
-    payload["markdown"] = render_due_markdown(at_time, due_rules)
+    payload["markdown"] = render_due_markdown(at_time, reminder_status, what_is_due, why_it_is_due, what_to_do_next)
     if save:
         markdown_path, json_path = save_due_snapshot(data_root, at_time, payload)
         payload["saved_markdown_path"] = markdown_path

@@ -87,6 +87,28 @@ def write_zip_bundle(data_root: Path, payload: dict) -> str:
     return str(destination.resolve())
 
 
+def render_bundle_markdown(
+    bundle_status: str,
+    source_or_target: str,
+    saved_to: str,
+    what_was_included: list[str],
+) -> str:
+    lines = [
+        "# Health Bundle Result",
+        "",
+        f"- Bundle Status: `{bundle_status}`",
+        f"- Source Or Target: `{source_or_target}`",
+        f"- Saved To: `{saved_to}`",
+        "",
+        "## What Was Included",
+        "",
+    ]
+    for item in what_was_included:
+        lines.append(f"- {item}")
+    lines.append("")
+    return "\n".join(lines)
+
+
 def main() -> int:
     args = parse_args()
     try:
@@ -97,6 +119,17 @@ def main() -> int:
         bundle_path = write_json_bundle(data_root, payload) if args.format == "json" else write_zip_bundle(data_root, payload)
         payload["bundle_path"] = bundle_path
         payload["bundle_format"] = args.format
+        payload["operation"] = "export"
+        payload["bundle_status"] = "bundle exported"
+        payload["source_or_target"] = str(data_root.resolve())
+        payload["saved_to"] = bundle_path
+        payload["what_was_included"] = payload["files"] or ["No tracked files were present in the selected workspace."]
+        payload["markdown"] = render_bundle_markdown(
+            payload["bundle_status"],
+            payload["source_or_target"],
+            payload["saved_to"],
+            payload["what_was_included"],
+        )
         print(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True))
         return 0
     except ExportError as exc:

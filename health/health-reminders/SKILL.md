@@ -50,7 +50,8 @@ Every reminder reply should make these things visible:
 - `Why It Is Due`
 - `What To Do Next`
 
-Keep the reminder output short and actionable.
+Keep the reminder output brief, explicit, and actionable.
+Do not omit the due reason or the next action when a reminder is currently due.
 
 ## Non-Goals
 

@@ -54,6 +54,17 @@ def validate_archive_honesty(reply: dict[str, Any]) -> None:
         raise ReplyValidationError(
             "record_status_code must stay `not_verified` when archive_status_source is `not-verified`."
         )
+    if source == "observed-write-result":
+        require_sections(reply, ["recorded", "saved_to"])
+
+
+def validate_markdown_shape(reply: dict[str, Any]) -> None:
+    markdown = reply.get("markdown")
+    if not isinstance(markdown, str):
+        raise ReplyValidationError("markdown must be a string.")
+    non_empty_lines = [line for line in markdown.splitlines() if line.strip()]
+    if len(non_empty_lines) < 3:
+        raise ReplyValidationError("markdown is too short; expected a multi-line doctor reply.")
 
 
 def validate_reply(reply: dict[str, Any]) -> dict[str, Any]:
@@ -73,6 +84,7 @@ def validate_reply(reply: dict[str, Any]) -> dict[str, Any]:
         require_sections(reply, ["record_status", "doctor_view", "advice"])
 
     validate_archive_honesty(reply)
+    validate_markdown_shape(reply)
     return {
         "status": "ok",
         "mode": mode,

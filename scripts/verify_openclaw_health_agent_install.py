@@ -176,6 +176,8 @@ def run_installed_acceptance(workspace: Path) -> dict[str, Any]:
                 str(bp_path),
             ]
         )
+        archive_result_path = temp_root / "archive-result.json"
+        write_json(archive_result_path, archive_result)
 
         summary = run_json(
             [
@@ -195,10 +197,22 @@ def run_installed_acceptance(workspace: Path) -> dict[str, Any]:
                 str(install_root / "private-doctor" / "scripts" / "render_doctor_reply.py"),
                 "--summary-file",
                 str(summary_path),
+                "--archive-result-file",
+                str(archive_result_path),
                 "--language",
                 "zh",
                 "--mode",
                 "routine",
+            ]
+        )
+        reply_path = temp_root / "reply.json"
+        write_json(reply_path, reply)
+        reply_validation = run_json(
+            [
+                sys.executable,
+                str(install_root / "private-doctor" / "scripts" / "validate_doctor_reply.py"),
+                "--reply-file",
+                str(reply_path),
             ]
         )
         review = run_json(
@@ -212,6 +226,16 @@ def run_installed_acceptance(workspace: Path) -> dict[str, Any]:
                 "--save",
             ]
         )
+        review_result_path = temp_root / "review.json"
+        write_json(review_result_path, review)
+        review_validation = run_json(
+            [
+                sys.executable,
+                str(install_root / "health-review" / "scripts" / "validate_health_review.py"),
+                "--review-file",
+                str(review_result_path),
+            ]
+        )
         brief = run_json(
             [
                 sys.executable,
@@ -221,6 +245,16 @@ def run_installed_acceptance(workspace: Path) -> dict[str, Any]:
                 "--days",
                 "30",
                 "--save",
+            ]
+        )
+        brief_result_path = temp_root / "brief.json"
+        write_json(brief_result_path, brief)
+        brief_validation = run_json(
+            [
+                sys.executable,
+                str(install_root / "doctor-brief" / "scripts" / "validate_doctor_brief.py"),
+                "--brief-file",
+                str(brief_result_path),
             ]
         )
         reminder_payload = {
@@ -249,6 +283,28 @@ def run_installed_acceptance(workspace: Path) -> dict[str, Any]:
                 str(reminder_payload_path),
             ]
         )
+        due_result = run_json(
+            [
+                sys.executable,
+                str(install_root / "health-reminders" / "scripts" / "health_reminders.py"),
+                "due",
+                "--data-root",
+                str(data_root),
+                "--at",
+                "2026-04-18T08:00:00+08:00",
+                "--save",
+            ]
+        )
+        due_result_path = temp_root / "due.json"
+        write_json(due_result_path, due_result)
+        reminder_validation = run_json(
+            [
+                sys.executable,
+                str(install_root / "health-reminders" / "scripts" / "validate_reminder_reply.py"),
+                "--reply-file",
+                str(due_result_path),
+            ]
+        )
         export_bundle = run_json(
             [
                 sys.executable,
@@ -257,6 +313,16 @@ def run_installed_acceptance(workspace: Path) -> dict[str, Any]:
                 str(data_root),
                 "--format",
                 "zip",
+            ]
+        )
+        export_result_path = temp_root / "export.json"
+        write_json(export_result_path, export_bundle)
+        export_validation = run_json(
+            [
+                sys.executable,
+                str(install_root / "health-storage-feishu" / "scripts" / "validate_bundle_reply.py"),
+                "--reply-file",
+                str(export_result_path),
             ]
         )
         restore_root = temp_root / "restored-health"
@@ -271,6 +337,16 @@ def run_installed_acceptance(workspace: Path) -> dict[str, Any]:
                 "--overwrite",
             ]
         )
+        restore_result_path = temp_root / "restore.json"
+        write_json(restore_result_path, restore_result)
+        restore_validation = run_json(
+            [
+                sys.executable,
+                str(install_root / "health-storage-feishu" / "scripts" / "validate_bundle_reply.py"),
+                "--reply-file",
+                str(restore_result_path),
+            ]
+        )
 
         return {
             "status": "ok",
@@ -278,11 +354,19 @@ def run_installed_acceptance(workspace: Path) -> dict[str, Any]:
             "profile_result_status": profile_result["status"],
             "archive_result_status": archive_result["status"],
             "reply_status": reply["status"],
+            "reply_validation_status": reply_validation["status"],
+            "reply_markdown": reply.get("markdown"),
             "review_path": review.get("saved_markdown_path"),
+            "review_validation_status": review_validation["status"],
             "brief_path": brief.get("saved_markdown_path"),
+            "brief_validation_status": brief_validation["status"],
             "reminder_status": reminder_result["status"],
+            "due_reminder_count": due_result["due_count"],
+            "reminder_validation_status": reminder_validation["status"],
             "bundle_path": export_bundle["bundle_path"],
+            "export_validation_status": export_validation["status"],
             "restored_count": restore_result["restored_count"],
+            "restore_validation_status": restore_validation["status"],
         }
     finally:
         shutil.rmtree(temp_root, ignore_errors=True)

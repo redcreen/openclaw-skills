@@ -61,7 +61,7 @@
 - `python3 scripts/validate_skill_boundaries.py`
   - 检查公开 skill 是否缺少必要文件
   - 检查兄弟 skill 或不同 skill 集之间是否出现运行时引用
-- `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health --format json`
+- `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.1 --domain health --format json`
   - 生成整套与单个 skill 的 GitHub 安装地址和可复制提示词
-- `python3 scripts/accept_health_suite.py --repo redcreen/openclaw-skills --ref v0.2.0`
+- `python3 scripts/accept_health_suite.py --repo redcreen/openclaw-skills --ref v0.2.1`
   - 通过 CLI 验证整套安装、归档、医生对话、复盘、摘要、提醒和 bundle 恢复

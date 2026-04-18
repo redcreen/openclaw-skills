@@ -72,7 +72,7 @@ That way the reminder can flow into recording, interpretation, and review instea
 ## GitHub Direct Install
 
 - stable install:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-reminders`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-reminders`
 - development install:
   - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-reminders`
 

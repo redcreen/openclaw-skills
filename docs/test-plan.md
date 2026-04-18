@@ -61,7 +61,7 @@ Available now:
 - `python3 scripts/validate_skill_boundaries.py`
   - detects missing required public skill files
   - detects runtime references across sibling skills or skill sets
-- `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health --format json`
+- `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.1 --domain health --format json`
   - generates suite and per-skill GitHub install URLs and copy-paste prompts
-- `python3 scripts/accept_health_suite.py --repo redcreen/openclaw-skills --ref v0.2.0`
+- `python3 scripts/accept_health_suite.py --repo redcreen/openclaw-skills --ref v0.2.1`
   - proves suite install, archive, doctor dialogue, review, brief, reminders, and bundle restore from CLI

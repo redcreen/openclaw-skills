@@ -95,11 +95,13 @@ Every archive reply must include:
 - `Status`: `archived`, `partially archived`, or `not archived`
 - `Recorded`: the normalized facts that were written
 - `Saved To`: the local file path or logical location that was updated
-- `Doctor Note`: one short interpretation line when the data supports it
+- `Doctor Note`: a compact 1-2 sentence interpretation when the data supports it
 
 Never say something was archived unless `skills/health-archive/scripts/archive_health_record.py` returned success.
+If the evidence is clear enough to archive, run the archive script before replying. Recognition alone is not archive success.
 
-If archive succeeds and the current interaction is clearly a health-management conversation, do not stop at storage acknowledgment alone. Continue with one short doctor-facing interpretation or hand the turn forward to the family-doctor layer in the same reply.
+If archive succeeds and the current interaction is clearly a health-management conversation, do not stop at storage acknowledgment alone. Continue with a compact but complete doctor-facing interpretation or hand the turn forward to the family-doctor layer in the same reply.
+One-line replies are not acceptable when an archive-worthy health item was processed.
 
 ## Follow-Up Rules
 
@@ -110,12 +112,12 @@ Ask a follow-up only when one of these blocks correct archiving:
 - the same day has multiple conflicting groups and the new evidence cannot be placed safely
 - the user explicitly asks not to store the item
 
-Otherwise, archive first and keep the reply short.
+Otherwise, archive first and keep the reply compact but complete.
 
 If the user looks like a first-time or non-expert user:
 
 - default to helping, not teaching prompt syntax
-- after successful archive, continue with one short interpretation
+- after successful archive, continue with a compact but complete interpretation
 - let the doctor layer ask only the next highest-value onboarding questions when needed
 
 ## Non-Goals

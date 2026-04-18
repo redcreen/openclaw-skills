@@ -6,6 +6,7 @@
 
 ## 条目
 
+- [2026-04-18 health v0.2.1 patch release](2026-04-18-health-v0.2.1-patch-release.md)
 - [2026-04-18 health suite V1 closeout](2026-04-18-health-suite-v1-closeout.md)
 - [2026-04-18 health full-capability planning retrofit](2026-04-18-health-full-capability-planning-retrofit.md)
 - [2026-04-18 public doc i18n gate convergence](2026-04-18-public-doc-i18n-gate-convergence.md)

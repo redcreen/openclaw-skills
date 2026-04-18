@@ -13,9 +13,9 @@ Users should not need to understand the repository layout. They should be able t
 For published installs, pin to a tag:
 
 ```text
-Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health
-Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-archive
-Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor
+Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health
+Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-archive
+Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/private-doctor
 ```
 
 For development or internal testing, `main` is acceptable:
@@ -27,11 +27,11 @@ Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health
 ## Maintainer Release Steps
 
 1. Publish the repository to GitHub.
-2. Create a stable tag such as `v0.2.0`.
+2. Create a stable tag such as `v0.2.1`.
 3. Run the generator:
 
 ```bash
-python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health --format markdown
+python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.1 --domain health --format markdown
 ```
 
 4. Copy the generated GitHub URL or `Install skill: ...` prompt into release notes, README files, or handoff docs.

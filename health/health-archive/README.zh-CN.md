@@ -43,20 +43,20 @@
 - `记录状态`
 - `识别到的关键数据`
 - `保存位置`
-- `一行简短判断`
+- `简短但完整的医生判断`
 
 也就是说，它首先要解决“有没有记住”，然后才是“这组数据大概怎么看”。
 
 ## 第一次怎么开始
 
-最简单的开始方式就是直接发一张图，并明确告诉它要记录。
+最简单的开始方式就是直接自然地发一张图。
 
 例如：
 
 ```text
-这是我今天早上的体重图，帮我记一下
-这是今天的血压图，记录后告诉我有没有成功写入
-这是我今天的运动截图，帮我入档
+这是我今天早上的体重图
+这是今天的血压图
+这是我今天的运动截图
 ```
 
 ## 它不会替你做什么
@@ -91,7 +91,7 @@
 ## GitHub 直装
 
 - 正式安装:
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-archive`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-archive`
 - 开发安装:
   - `安装技能：https://github.com/redcreen/openclaw-skills/tree/main/health/health-archive`
 - 如果维护者已经发布了 release，可直接把上面的地址粘到 OpenClaw 对话框里。
@@ -107,7 +107,7 @@
 ## 脚本示例
 
 ```bash
-python3 skills/health-archive/scripts/archive_health_record.py --payload-file /tmp/health-archive-payload.json
+python3 skills/health-archive/scripts/archive_health_record.py --payload-file artifacts/health-archive-payload.json
 ```
 
 ## 使用注意

@@ -48,6 +48,8 @@ The intended reply should stay stable rather than swinging between one-line logg
 In most cases it should make these things visible:
 
 - `Record Status`
+- `Recorded` when this turn included new evidence
+- `Saved To` when the archive write was observed
 - `Doctor View`
 - `Advice`
 - `Plan`
@@ -69,7 +71,7 @@ Examples:
 
 ```text
 Build my health profile: 44 years old, 178 cm, mainly trying to control weight and blood pressure.
-This is today's blood-pressure image. Record it and tell me what it means.
+This is today's blood-pressure image.
 My weight has been dropping over the last few days. Help me understand whether the trend looks reasonable.
 ```
 
@@ -106,7 +108,7 @@ That way a health image can be archived first and then immediately continue into
 ## GitHub Direct Install
 
 - stable install:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/private-doctor`
 - development install:
   - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/private-doctor`
 - once the repository is published, maintainers can paste that URL directly into the OpenClaw chat.
@@ -125,7 +127,7 @@ That way a health image can be archived first and then immediately continue into
 
 ## Usage Notes
 
-- replies should stay short but complete
+- replies should stay brief but complete
 - every reply should make record status visible when new facts arrived
 - the skill should interpret and advise instead of acting like a clerk
 - if this skill did not witness a successful archive write, it must mark record status as not verified

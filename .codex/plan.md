@@ -2,13 +2,13 @@
 
 ## Current Phase
 
-Health V1 is released.
+Health V1 is released, and `v0.2.1` is the latest stable patch target.
 
 ## Current Execution Line
 
 - Objective: no active execution line; keep the released suite stable until a new slice opens
 - Plan Link: health V1 released
-- Runway: one checkpoint-sized execution line
+- Runway: one release-maintenance checkpoint at a time
 - Progress: 6 / 6 tasks complete
 - Stop Conditions:
   - the medical scope expands beyond the agreed family-doctor V1 boundary
@@ -17,6 +17,7 @@ Health V1 is released.
   - one command installs the full `health` suite from a stable tag
   - CLI proves install, archive, doctor dialogue, review, brief, reminders, and restore on the same release tag
   - release-facing docs point to the stable tag instead of `main`
+  - reply-contract validation is machine-checked across doctor, review, brief, reminder, and bundle flows
 
 ## Execution Tasks
 
@@ -42,9 +43,11 @@ Health V1 is released.
 
 ## Architecture Supervision
 - Signal: `green`
+- Signal Basis: the released suite contract, reply validators, and release-facing docs now point to the same stable patch surface
 - Problem Class: no active health delivery problem
 - Root Cause Hypothesis: future issues would come from post-release change drift
 - Correct Layer: future release planning when a new slice starts
+- Automatic Review Trigger: reopen supervision when a new post-V1 slice, regression-control patch, or install-surface drift appears
 - Rejected Shortcut: reopening delivery work without a concrete new scope
 - Escalation Gate: continue automatically
 

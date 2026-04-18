@@ -44,20 +44,20 @@ It should at least make these things visible:
 - `Record Status`
 - the key facts that were extracted
 - where they were saved
-- one short interpretation line when possible
+- one compact doctor interpretation
 
 So the first job is “did it really get stored”, and only then “what does this roughly mean”.
 
 ## How To Start The First Time
 
-The simplest way to start is to send one image and explicitly ask it to record the item.
+The simplest way to start is to send one image naturally.
 
 Examples:
 
 ```text
-This is my weight image from this morning. Record it.
-This is today's blood-pressure image. Record it and tell me whether it really got written.
-This is my exercise screenshot for today. Archive it.
+This is my weight image from this morning.
+This is today's blood-pressure image.
+This is my exercise screenshot for today.
 ```
 
 ## What It Does Not Replace
@@ -92,7 +92,7 @@ If you want the full family-doctor experience, install at least:
 ## GitHub Direct Install
 
 - stable install:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-archive`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health/health-archive`
 - development install:
   - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-archive`
 - once the repository is published, maintainers can paste that URL directly into the OpenClaw chat.
@@ -108,7 +108,7 @@ If you want the full family-doctor experience, install at least:
 ## Script Example
 
 ```bash
-python3 skills/health-archive/scripts/archive_health_record.py --payload-file /tmp/health-archive-payload.json
+python3 skills/health-archive/scripts/archive_health_record.py --payload-file artifacts/health-archive-payload.json
 ```
 
 ## Usage Notes

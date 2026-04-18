@@ -31,7 +31,7 @@
 正式整套安装入口：
 
 ```text
-安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health
+安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.1/health
 ```
 
 如果你只想装单个能力，也可以单独安装 `health/health-archive/` 之类的子 skill，但重置替换场景通常应该直接装整套。
@@ -62,7 +62,7 @@ python3 health/health-storage-feishu/scripts/import_health_workspace_bundle.py \
 仓库级完整验收已经由下面的脚本承接：
 
 ```bash
-python3 scripts/accept_health_suite.py --repo redcreen/openclaw-skills --ref v0.2.0
+python3 scripts/accept_health_suite.py --repo redcreen/openclaw-skills --ref v0.2.1
 ```
 
 这条验收链路已经覆盖：

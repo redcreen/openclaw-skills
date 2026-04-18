@@ -42,9 +42,9 @@ This suite is meant for users who currently feel one or more of these pains:
 
 The intended user flow is:
 
-1. install the `health` capability
-2. build a baseline profile with goals, background, and medication context
-3. send daily health images or facts
+1. install `health/` as the default suite entry
+2. after installation, talk to it like a family doctor and send a health image or a short health fact naturally
+3. keep sending daily health images or facts
 4. let the suite record first, then continue the doctor-style dialogue on top of those records
 5. later add weekly reviews, stage summaries, clinician briefs, and reminders
 
@@ -65,18 +65,28 @@ The remaining roadmap focus is now mostly on release closure, migration playbook
 
 ## How To Start The First Time
 
-The most natural first session is:
+The user should not need to learn a special way to prompt it first.
 
-1. tell it your age, height, current goals, three-high background, and medication context
-2. or just send the first weight or blood-pressure image
-3. ask it to record the item and tell you what it means
+1. install the full suite entry first:
+   `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health`
+2. after installation, just send a health image or say one natural health sentence.
+
+The suite should infer whether this is:
+
+- first-time onboarding
+- daily intake
+- trend review
+- risk follow-up
+
+If baseline profile data is missing, it should ask only the next 1-3 highest-value questions inside the same reply instead of forcing the user to teach it how to behave.
 
 Typical examples:
 
 ```text
-This is my weight image from this morning. Record it and tell me the recent trend.
-This is today's blood pressure image. Record it and tell me what I should watch today.
-Build my health profile: 44 years old, 178 cm, mainly trying to control weight and blood pressure.
+This is my weight image from this morning.
+This is today's blood pressure image.
+I mainly want to lose weight and control my blood pressure.
+I've felt a bit dizzy for the last two days.
 ```
 
 ## What Daily Dialogue Should Feel Like
@@ -102,9 +112,7 @@ That means the user-facing shape should stay close to:
 
 If you want to start today:
 
-- install at least:
-  - `health-archive`
-  - `private-doctor`
+- install `health/` as the default full-suite entry
 
 If your first problem is simply “did the image really get recorded?”:
 
@@ -112,7 +120,7 @@ If your first problem is simply “did the image really get recorded?”:
 
 If you want the family-doctor experience:
 
-- start with `health-archive + private-doctor`
+- you can install `health-archive + private-doctor` directly
 
 The suite now supports both:
 

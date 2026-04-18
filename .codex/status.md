@@ -7,31 +7,30 @@
 
 ## Current Phase
 
-Health full-capability planning retrofit complete; Stage 3 implementation ready.
+Health V1 released.
 
 ## Active Slice
 
-Health suite install and doctor-core completion.
+No active delivery slice. Health V1 is released; future work is optional iteration.
 
 ## Current Execution Line
 
-- Objective: implement one-command suite install, onboarding, initial assessment, and archive-to-doctor continuity for the `health` skill set
-- Plan Link: health suite install and doctor-core completion
+- Objective: keep the released `health` suite stable and leave future work optional
+- Plan Link: health V1 released
 - Runway: one checkpoint-sized execution line
-- Progress: 0 / 6 tasks complete
+- Progress: 6 / 6 tasks complete
 - Stop Conditions:
-  - suite install needs host support outside the current GitHub + skill-installer model
   - the medical scope expands beyond the agreed health-agent V1 boundary
   - migration/reset expectations require product decisions outside this repo
 
 ## Execution Tasks
 
-- [ ] EL-1 define and implement the one-command `health` suite install flow
-- [ ] EL-2 expand the baseline health profile schema for onboarding and three-high context
-- [ ] EL-3 add initial risk framing and first-phase planning to `private-doctor`
-- [ ] EL-4 verify image-or-fact archive -> doctor dialogue through CLI
-- [ ] EL-5 decide whether archive needs a multi-image single-session helper
-- [ ] EL-6 refresh release-facing docs and manifests for the suite-install entry
+- [x] EL-1 define and implement the one-command `health` suite install flow
+- [x] EL-2 expand the baseline health profile schema for onboarding and three-high context
+- [x] EL-3 add initial risk framing and first-phase planning to `private-doctor`
+- [x] EL-4 verify image-or-fact archive -> doctor dialogue through CLI
+- [x] EL-5 decide whether archive needs a multi-image single-session helper
+- [x] EL-6 publish the stable release and rerun CLI acceptance against the release tag
 
 ## Development Log Capture
 
@@ -41,16 +40,16 @@ Health suite install and doctor-core completion.
 
 ## Architecture Supervision
 - Signal: `green`
-- Signal Basis: the roadmap now closes against real health-agent capability, not only repo structure or release wiring
-- Root Cause Hypothesis: the earlier roadmap over-focused on baseline infrastructure and under-specified how to close onboarding, reviews, reminders, and CLI acceptance
-- Correct Layer: roadmap, development plan, module planning, and capability mapping
-- Automatic Review Trigger: review again when a new health skill is added or the suite-install contract changes
+- Signal Basis: the stable release is published and the suite contract is now explicit
+- Root Cause Hypothesis: future drift would come from post-release changes, not an incomplete V1 baseline
+- Correct Layer: future iteration and regression control
+- Automatic Review Trigger: review again when a new health release starts
 - Escalation Gate: continue automatically
 
 ## Current Escalation State
 - Current Gate: continue automatically
-- Reason: the planning surface now matches the intended health-agent V1 target and is ready for direct implementation
-- Next Review Trigger: a future slice changes the install model, medical scope, or migration expectations
+- Reason: health V1 is released and no blocking capability gap remains
+- Next Review Trigger: a future slice reopens the health module
 
 ## Done
 
@@ -70,21 +69,23 @@ Health suite install and doctor-core completion.
 - repo-level boundary validator implemented
 - GitHub install reference docs added
 - `scripts/generate_skill_install_manifest.py` implemented
-- public repo and `v0.1.0` release published
+- public repo and `v0.2.0` release published
 - public-doc i18n gate converged and passes
 - health roadmap, development plan, architecture, and capability map now target full health-agent V1 closure
+- `health/` now has a stable umbrella suite entry plus `SKILLSET.json`
+- `health-review`, `doctor-brief`, `health-reminders`, and `health-storage-feishu` implemented
+- health reset playbook documented
+- CLI acceptance covers install, archive, doctor dialogue, review, brief, reminders, and restore
 
 ## In Progress
 
-- Stage 3 implementation has been defined but not started
-- suite-install packaging and CLI acceptance design still need code
+- none
 
 ## Blockers / Open Decisions
 
-- choose the exact one-command suite-install surface: bundle manifest, helper script, or both
-- decide how much of Feishu backup/export belongs in Stage 5 versus a later optional adapter release
+- none
 
 ## Next 3 Actions
-1. Implement the one-command `health` suite install flow.
-2. Expand `private-doctor` onboarding and initial assessment around the health V1 profile schema.
-3. Add a CLI scenario that proves image archive -> doctor dialogue without user manual QA.
+1. Keep health V1 stable while preparing any future optional enhancements.
+2. Do not expand `order` until there is a real order-side delivery need.
+3. Reopen the module only when a concrete post-V1 slice exists.

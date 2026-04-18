@@ -69,7 +69,7 @@ That way the brief has enough archived records and review context to work from.
 ## GitHub Direct Install
 
 - stable install:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/doctor-brief`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/doctor-brief`
 - development install:
   - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/doctor-brief`
 

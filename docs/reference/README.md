@@ -8,4 +8,5 @@ This section holds durable maintainer-facing reference material for the workspac
 
 - Development plan: [openclaw-skills/development-plan.md](openclaw-skills/development-plan.md)
 - Health capability map: [openclaw-skills/health-capability-map.md](openclaw-skills/health-capability-map.md)
+- Health reset playbook: [openclaw-skills/health-reset-playbook.md](openclaw-skills/health-reset-playbook.md)
 - GitHub install guide: [openclaw-skills/github-install.md](openclaw-skills/github-install.md)

@@ -45,7 +45,7 @@
 ## GitHub 直装
 
 - 正式安装:
-  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-storage-feishu`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-storage-feishu`
 - 开发安装:
   - `安装技能：https://github.com/redcreen/openclaw-skills/tree/main/health/health-storage-feishu`
 

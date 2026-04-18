@@ -52,18 +52,16 @@ The intended user flow is:
 
 The current baseline already supports:
 
+- one install target for the full `health` suite through `health/`
 - local-first archive with explicit record status
 - concise family-doctor interpretation on top of the local health workspace
 - ongoing profile building instead of restarting from zero every time
-
-The roadmap has already locked the next layers:
-
-- one-command install for the full `health` suite
-- more complete proactive onboarding and baseline three-high assessment
 - daily, weekly, and monthly reviews
 - clinician-readable briefs
-- reminder capability
-- CLI-first full-suite acceptance
+- reminder rules and due-reminder checks
+- export and restore bundles before reset or migration
+
+The remaining roadmap focus is now mostly on release closure, migration playbooks, and future optional adapters rather than missing core health flows.
 
 ## How To Start The First Time
 
@@ -116,13 +114,18 @@ If you want the family-doctor experience:
 
 - start with `health-archive + private-doctor`
 
-The roadmap does not turn `health/` into one fake monolithic skill. Instead, it aims to provide a one-command flow that installs the full `health` suite together.
+The suite now supports both:
+
+- installing `health/` as one umbrella entry for the full family-doctor workflow
+- installing any nested skill directly when only one workflow is needed
+
+The runtime still stays modular inside `health/`; the suite entry is a distribution convenience, not a return to one mixed legacy agent.
 
 ## Rules For This Skill Set
 
 - keep all runtime behavior inside `health/`
 - do not mix order or other non-health business logic into this set
-- install individual skills, not the whole folder as one hidden monolith
+- allow either the suite entry `health/` or any nested skill folder to be installed directly
 - default external data root is `~/document/personal health`, but installation must let the user override it
 - Feishu is disabled by default in V1
 
@@ -137,10 +140,13 @@ The roadmap does not turn `health/` into one fake monolithic skill. Instead, it 
 | [`health-reminders`](health-reminders/README.md) | Manage recurring reminder rules and due-reminder checks | `health/health-reminders/` | the user wants measurement, medication, exercise, or review reminders | writes into `reminders/` |
 | [`health-storage-feishu`](health-storage-feishu/README.md) | Export and restore portable health-workspace bundles for optional backup or mirror workflows | `health/health-storage-feishu/` | the user wants backup or restore readiness before reset | current focus is local bundle export and restore |
 
-## Health Suite Install Target
+## Health Suite Install Entry
 
-- the roadmap does not turn `health/` into one fake monolithic skill
-- the target is a one-command install flow that installs multiple health skills together
+- `health/` now acts as a suite-level install entry
+- it ships both an umbrella `SKILL.md` and a `SKILLSET.json` manifest
+- hosts that understand suite manifests can expand it into multiple installed skills
+- hosts that only install one skill folder can still install `health/` directly and use the umbrella skill
+- runtime behavior stays modular inside the `health/` module
 - the default suite target includes:
   - `health-archive`
   - `private-doctor`
@@ -164,22 +170,23 @@ The roadmap does not turn `health/` into one fake monolithic skill. Instead, it 
 After publishing, you can send either the full-suite install URL or the exact single-skill URL.
 
 - full `health` suite install
-  - `Install skill suite: https://github.com/redcreen/openclaw-skills/tree/main/health`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health`
+  - development install: `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health`
 
 - `health-archive`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-archive`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-archive`
 - `private-doctor`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/private-doctor`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor`
 - `health-review`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-review`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-review`
 - `doctor-brief`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/doctor-brief`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/doctor-brief`
 - `health-reminders`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-reminders`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-reminders`
 - `health-storage-feishu`
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-storage-feishu`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-storage-feishu`
 - maintainer batch generation:
-  - `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref main --domain health`
+  - `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health`
 
 ## Data Root
 

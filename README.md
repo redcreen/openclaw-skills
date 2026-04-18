@@ -2,7 +2,7 @@
 
 # OpenClaw Skills Workspace
 
-This repository is a multi-skill workspace for OpenClaw. It groups installable skills by top-level skill set such as `health/` and `order/`, while keeping every individual skill independently runnable.
+This repository is a multi-skill workspace for OpenClaw. It groups installable skills by top-level skill set such as `health/` and `order/`, while keeping every domain isolated and every concrete skill independently runnable.
 
 ## Workspace Rules
 
@@ -18,6 +18,8 @@ This repository is a multi-skill workspace for OpenClaw. It groups installable s
 openclaw-skills/
   health/
     README.md
+    SKILL.md
+    SKILLSET.json
     health-archive/
       SKILL.md
     private-doctor/
@@ -35,27 +37,29 @@ openclaw-skills/
 
 | Skill Set | Purpose | Available Skills | Install Path | Usage Notes |
 | --- | --- | --- | --- | --- |
-| [`health`](health/README.md) | Personal health profile, archiving, interpretation, and planning | [`health-archive`](health/health-archive/README.md), [`private-doctor`](health/private-doctor/README.md) | Install one or more folders under `health/<skill-name>/` | Health data defaults to `~/document/personal health`; users choose the path during installation; Feishu stays off by default |
+| [`health`](health/README.md) | Personal health profile, archiving, family-doctor dialogue, reviews, briefs, reminders, and backup | [`health`](health/README.md), [`health-archive`](health/health-archive/README.md), [`private-doctor`](health/private-doctor/README.md), [`health-review`](health/health-review/README.md), [`doctor-brief`](health/doctor-brief/README.md), [`health-reminders`](health/health-reminders/README.md), [`health-storage-feishu`](health/health-storage-feishu/README.md) | Install `health/` for the whole suite, or install any `health/<skill-name>/` folder directly | Health data defaults to `~/document/personal health`; users choose the path during installation; Feishu stays off by default |
 | `order` | Reserved for future order-related skills | none yet | not started | Must stay isolated from `health` when added |
 
 ## Install Model
 
-Install at the skill-folder level, not at the skill-set level.
+Install either the suite entry or the exact skill folder you need.
 
-1. Choose the domain skill set, such as `health/`.
-2. Open the README for the exact skill you want.
-3. Install the folder that contains that skill's `SKILL.md`.
-4. Apply only the configuration required by that skill.
+1. If you want the full family-doctor workflow, install `health/`.
+2. If you want only one focused workflow, install the exact folder such as `health/health-archive/`.
+3. Read the corresponding README for the behavior and data-root rules.
+4. Apply only the configuration required by the selected install target.
 
 ## GitHub Direct Install
 
 After the repository is published, prefer a copy-paste GitHub URL in the OpenClaw chat instead of asking users to browse the repo manually.
 
-- stable install should be pinned to a tag:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive`
+- stable suite install should be pinned to a tag:
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health`
+- stable single-skill install may also be pinned to the same tag:
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor`
 - development install may point to `main`:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/private-doctor`
-- maintainers can generate the exact per-skill prompts with `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.1.0`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health`
+- maintainers can generate the exact prompts with `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.2.0 --domain health`
 
 ## Skill Documentation
 

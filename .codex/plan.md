@@ -2,31 +2,30 @@
 
 ## Current Phase
 
-Health full-capability planning is locked; Stage 3 implementation is next.
+Health V1 is released.
 
 ## Current Execution Line
 
-- Objective: implement Stage 3 so the `health` suite can be installed in one command and can immediately handle onboarding, initial assessment, and image-driven archive-to-doctor dialogue
-- Plan Link: health suite install and doctor-core completion
+- Objective: no active execution line; keep the released suite stable until a new slice opens
+- Plan Link: health V1 released
 - Runway: one checkpoint-sized execution line
-- Progress: 0 / 6 tasks complete
+- Progress: 6 / 6 tasks complete
 - Stop Conditions:
-  - suite install requires host support that cannot be represented by the current GitHub + skill-installer model
   - the medical scope expands beyond the agreed family-doctor V1 boundary
   - the reset or migration path needs product decisions outside the repo
 - Validation:
   - one command installs the full `health` suite from a stable tag
-  - CLI proves archive -> doctor dialogue on the same local workspace
-  - onboarding and initial assessment work without manual patching of files
+  - CLI proves install, archive, doctor dialogue, review, brief, reminders, and restore on the same release tag
+  - release-facing docs point to the stable tag instead of `main`
 
 ## Execution Tasks
 
-- [ ] EL-1 define and implement the one-command `health` suite install flow
-- [ ] EL-2 expand the baseline health profile schema for onboarding and three-high context
-- [ ] EL-3 add initial risk framing and first-phase planning to `private-doctor`
-- [ ] EL-4 verify image-or-fact archive -> doctor dialogue through CLI
-- [ ] EL-5 decide whether archive needs a multi-image single-session helper
-- [ ] EL-6 refresh release-facing docs and manifests for the suite-install entry
+- [x] EL-1 define and implement the one-command `health` suite install flow
+- [x] EL-2 expand the baseline health profile schema for onboarding and three-high context
+- [x] EL-3 add initial risk framing and first-phase planning to `private-doctor`
+- [x] EL-4 verify image-or-fact archive -> doctor dialogue through CLI
+- [x] EL-5 decide whether archive needs a multi-image single-session helper
+- [x] EL-6 publish the stable release and rerun the acceptance chain on that tag
 
 ## Development Log Capture
 
@@ -43,10 +42,10 @@ Health full-capability planning is locked; Stage 3 implementation is next.
 
 ## Architecture Supervision
 - Signal: `green`
-- Problem Class: capability gap between the released `health` baseline and the intended health-agent V1
-- Root Cause Hypothesis: the repo already solved structure and baseline scripts, but it has not yet closed suite-install, onboarding, and end-to-end acceptance
-- Correct Layer: modular health-skill delivery plus CLI acceptance
-- Rejected Shortcut: shipping another monolithic health agent or pretending the current two-skill baseline is already complete
+- Problem Class: no active health delivery problem
+- Root Cause Hypothesis: future issues would come from post-release change drift
+- Correct Layer: future release planning when a new slice starts
+- Rejected Shortcut: reopening delivery work without a concrete new scope
 - Escalation Gate: continue automatically
 
 ## Escalation Model
@@ -90,3 +89,10 @@ Health full-capability planning is locked; Stage 3 implementation is next.
   - Risks: the user still has to manually bridge the old agent or manually test the core flow
   - Validation: reminder path exists, reset/migration playbook exists, and CLI acceptance covers the full suite
   - Exit Condition: the intended health-agent V1 is fully covered by modular skills
+
+- Slice: health V1 release closeout
+  - Objective: publish the stable tag, bind public docs to it, and rerun the acceptance chain on the tagged content
+  - Dependencies: reminders, migration, and health V1 closeout
+  - Risks: the suite works on `main` but the published install surface drifts
+  - Validation: the stable tag installs cleanly and passes `scripts/accept_health_suite.py`
+  - Exit Condition: the stable public release is truly installable

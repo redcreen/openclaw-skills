@@ -106,7 +106,7 @@ That way a health image can be archived first and then immediately continue into
 ## GitHub Direct Install
 
 - stable install:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/private-doctor`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/private-doctor`
 - development install:
   - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/private-doctor`
 - once the repository is published, maintainers can paste that URL directly into the OpenClaw chat.

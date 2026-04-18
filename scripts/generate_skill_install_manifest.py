@@ -93,11 +93,11 @@ def build_suite_entry(repo: str, ref: str, domain: str) -> dict[str, str]:
     github_url = f"https://github.com/{repo}/tree/{ref}/{domain}"
     return {
         "skill_set": domain,
-        "skill_name": f"{domain}-suite",
+        "skill_name": domain,
         "path": domain,
         "github_url": github_url,
-        "install_prompt_zh": f"安装技能集：{github_url}",
-        "install_prompt_en": f"Install skill suite: {github_url}",
+        "install_prompt_zh": f"安装技能：{github_url}",
+        "install_prompt_en": f"Install skill: {github_url}",
     }
 
 

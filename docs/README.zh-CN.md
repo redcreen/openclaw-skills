@@ -21,6 +21,7 @@
 - English roadmap: [roadmap.md](roadmap.md)
 - 开发计划: [reference/openclaw-skills/development-plan.zh-CN.md](reference/openclaw-skills/development-plan.zh-CN.md)
 - Health 能力映射: [reference/openclaw-skills/health-capability-map.zh-CN.md](reference/openclaw-skills/health-capability-map.zh-CN.md)
+- Health 重置 Playbook: [reference/openclaw-skills/health-reset-playbook.zh-CN.md](reference/openclaw-skills/health-reset-playbook.zh-CN.md)
 
 ## 验证
 

@@ -21,6 +21,7 @@ This documentation set explains how the workspace is organized, how new skill se
 - Chinese roadmap: [roadmap.zh-CN.md](roadmap.zh-CN.md)
 - Development plan: [reference/openclaw-skills/development-plan.md](reference/openclaw-skills/development-plan.md)
 - Health capability map: [reference/openclaw-skills/health-capability-map.md](reference/openclaw-skills/health-capability-map.md)
+ - Health reset playbook: [reference/openclaw-skills/health-reset-playbook.md](reference/openclaw-skills/health-reset-playbook.md)
 
 ## Verification
 

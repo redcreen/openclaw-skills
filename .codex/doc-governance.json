@@ -34,7 +34,15 @@
     "health/health-archive/README.md",
     "health/health-archive/README.zh-CN.md",
     "health/private-doctor/README.md",
-    "health/private-doctor/README.zh-CN.md"
+    "health/private-doctor/README.zh-CN.md",
+    "health/health-review/README.md",
+    "health/health-review/README.zh-CN.md",
+    "health/doctor-brief/README.md",
+    "health/doctor-brief/README.zh-CN.md",
+    "health/health-reminders/README.md",
+    "health/health-reminders/README.zh-CN.md",
+    "health/health-storage-feishu/README.md",
+    "health/health-storage-feishu/README.zh-CN.md"
   ],
   "docsHomeLinks": {
     "en": [
@@ -61,9 +69,9 @@
     "docs/workstreams/*.md",
     "docs/workstreams/**/*.md",
     "docs/devlog/README.md",
-    "health/*.md",
+    "health/README.md",
     "health/*/README.md",
-    "order/*.md",
+    "order/README.md",
     "order/*/README.md"
   ],
   "publicDocExcludeGlobs": [
@@ -104,7 +112,7 @@
       "role": "durable"
     },
     {
-      "glob": "health/*.md",
+      "glob": "health/README.md",
       "role": "durable"
     },
     {
@@ -112,7 +120,7 @@
       "role": "durable"
     },
     {
-      "glob": "order/*.md",
+      "glob": "order/README.md",
       "role": "durable"
     },
     {

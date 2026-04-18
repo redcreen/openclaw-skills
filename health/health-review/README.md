@@ -68,7 +68,7 @@ For reviews to mean anything, the local workspace should already have records fr
 ## GitHub Direct Install
 
 - stable install:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-review`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-review`
 - development install:
   - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-review`
 

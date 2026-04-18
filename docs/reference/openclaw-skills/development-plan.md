@@ -14,7 +14,7 @@ This plan turns the roadmap into an ordered execution queue for the workspace.
 
 ## Current Position
 
-The workspace has completed the `health` baseline, but it has not yet closed the full intended health-agent capability. The next work is to turn the existing health skill set into a complete, reset-ready family-doctor suite.
+The workspace has now closed the intended health-agent V1 inside the modular `health` skill set. The remaining work after this plan is future iteration, not missing closure for the baseline family-doctor replacement.
 
 ## Health V1 Closure Target
 
@@ -69,38 +69,15 @@ Close the core gap between the current skill set and the intended health agent: 
 
 ### Status
 
-Active.
+Complete.
 
-### Existing Base
+### Completed Work
 
-1. `health-archive` already supports verified local-first archive writes.
-2. `private-doctor` already supports basic profile maintenance and doctor-style reply rendering.
-3. The repository is public and already has tag-based install docs.
-
-### Ordered Queue
-
-1. Define the `health` suite install contract:
-   - one command installs multiple health skill folders
-   - runtime still stays modular
-   - `health/` is not turned into a fake monolithic skill
-2. Ship the health-suite install entry:
-   - bundle manifest or helper command
-   - release-facing docs for full-suite install
-3. Expand the baseline profile schema for:
-   - identity and goals
-   - blood pressure / lipid / glucose context
-   - current medication
-   - lifestyle and main concerns
-4. Complete the doctor-core behavior in `private-doctor`:
-   - proactive onboarding
-   - baseline risk framing
-   - first-phase action plan
-   - explicit follow-up focus
-5. Add CLI acceptance for the core loop:
-   - image or fact archive
-   - read from the local workspace
-   - continue with doctor-style interpretation and next steps
-6. Decide whether archive needs a multi-image single-session helper as part of the same slice.
+1. Added `health/SKILL.md` and `health/SKILLSET.json` so the suite has a stable top-level install entry while keeping nested skills independently installable.
+2. Added `archive_health_session.py` to support multi-item archive sessions from one user message.
+3. Expanded `private-doctor` with onboarding assessment, baseline risk framing, and first-phase plan generation.
+4. Added CLI acceptance that proves archive -> doctor interpretation -> next-step reply on the same local workspace.
+5. Refreshed release-facing install docs around the suite entry.
 
 ### Exit Criteria
 
@@ -116,26 +93,15 @@ Deliver long-term review, trend follow-up, and clinician-facing outputs.
 
 ### Status
 
-Planned.
+Complete.
 
-### Ordered Queue
+### Completed Work
 
-1. Add `health-review`:
-   - daily review
-   - weekly summary
-   - monthly or stage review
-2. Persist review outputs into the local workspace:
-   - `reviews/`
-   - stable output contract and metadata
-3. Add `doctor-brief`:
-   - clinician-readable brief
-   - stage summary for visits
-4. Persist clinician outputs into the local workspace:
-   - `reports/`
-   - stable doctor-brief format
-5. Add CLI acceptance:
-   - records -> review output
-   - records -> clinician brief
+1. Added `health-review` with daily, weekly, and monthly review generation.
+2. Persisted review outputs into `reviews/` with a stable saved-output contract.
+3. Added `doctor-brief` for clinician-readable briefs and stage summaries.
+4. Persisted clinician outputs into `reports/`.
+5. Covered review and brief generation in the CLI acceptance chain.
 
 ### Exit Criteria
 
@@ -151,29 +117,15 @@ Deliver reminders, reset/migration readiness, and final acceptance for the skill
 
 ### Status
 
-Planned.
+Complete.
 
-### Ordered Queue
+### Completed Work
 
-1. Add `health-reminders` or an equivalent scheduling contract:
-   - fixed reminders
-   - lightweight fallback reminders
-   - do not push all timing logic into one chat skill
-2. Add reset and migration readiness:
-   - backup flow before resetting the old health agent
-   - Feishu export or backup path
-   - restore path into the local workspace
-3. Decide and, if kept, add optional `health-storage-feishu`:
-   - mirror/export only
-   - never the main source of truth
-4. Build the final CLI acceptance suite:
-   - full-suite install
-   - archive
-   - doctor dialogue
-   - review
-   - clinician brief
-   - reminder basics
-5. Use CLI acceptance as the release gate instead of asking the user to do the foundational testing.
+1. Added `health-reminders` for recurring reminder rules and due-reminder checks.
+2. Added `health-storage-feishu` as the optional bundle export and restore layer for backup or migration readiness.
+3. Added a reset and migration playbook so the old health agent can be replaced safely.
+4. Built the final CLI acceptance suite for install, archive, doctor dialogue, review, clinician brief, reminders, and bundle restore.
+5. Kept Feishu optional instead of making it the required source of truth.
 
 ### Exit Criteria
 

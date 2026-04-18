@@ -7,6 +7,7 @@
 This repository is a module-aware OpenClaw skill workspace.
 
 - each top-level folder such as `health/` or `order/` represents one isolated skill set
+- a top-level skill set root may optionally expose a suite entry such as `SKILL.md` or `SKILLSET.json`, but only for that same domain
 - each nested skill folder such as `health/health-archive/` represents one installable skill
 - each skill owns its own `SKILL.md`, UI metadata, prompts, references, and assets
 
@@ -17,6 +18,8 @@ This repository is a module-aware OpenClaw skill workspace.
   <skill-set>/
     README.md
     README.zh-CN.md
+    SKILL.md              # optional umbrella suite entry
+    SKILLSET.json         # optional suite manifest
     <skill-name>/
       SKILL.md
       agents/openai.yaml
@@ -37,8 +40,8 @@ This repository is a module-aware OpenClaw skill workspace.
 ### `health`
 
 - purpose: personal health profile, archive, interpretation, and planning
-- current skills: `health-archive`, `private-doctor`
-- planned skills: `health-review`, `doctor-brief`, `health-reminders`
+- suite entry: `health/`
+- current skills: `health-archive`, `private-doctor`, `health-review`, `doctor-brief`, `health-reminders`
 - optional adapter: `health-storage-feishu`
 - default external data root: `~/document/personal health`
 - Feishu policy: disabled by default; future optional storage adapter only
@@ -58,11 +61,15 @@ This repository is a module-aware OpenClaw skill workspace.
 
 ## Health Suite Distribution Model
 
-- runtime stays split across multiple skills; `health/` is not turned into one fake monolithic skill
+- runtime stays split across multiple focused skills inside `health/`
+- `health/` may expose an umbrella skill and a suite manifest as the install entry
 - the distribution layer should support both:
   - single-skill installation
   - one-command installation for the full `health` suite
-- suite install means installing multiple skill folders from the same repo and tag, not changing the runtime boundaries
+- suite install means either:
+  - installing multiple nested skill folders from the same repo and tag, or
+  - installing the `health/` umbrella entry when the host only supports one skill folder
+- neither option changes the runtime boundaries inside the `health` module
 - after resetting the old health agent, the expected recovery path is the suite-install entry point
 
 ## Validation Model

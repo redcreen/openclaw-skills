@@ -71,7 +71,7 @@ It does not replace:
 - weekly or monthly review
 - clinician-facing briefs
 
-Those are handled by `private-doctor` and later planned skills.
+Those are handled by `private-doctor` and the other installed health skills.
 
 ## Recommended Pairing
 
@@ -92,7 +92,7 @@ If you want the full family-doctor experience, install at least:
 ## GitHub Direct Install
 
 - stable install:
-  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.2.0/health/health-archive`
 - development install:
   - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-archive`
 - once the repository is published, maintainers can paste that URL directly into the OpenClaw chat.

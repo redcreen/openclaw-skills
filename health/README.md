@@ -22,11 +22,11 @@ This folder contains installable skills for personal health workflows. The set i
 After publishing, prefer sending the exact GitHub tree URL for the chosen skill.
 
 - `health-archive`
-  - `Install skill: https://github.com/<owner>/<repo>/tree/<tag>/health/health-archive`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive`
 - `private-doctor`
-  - `Install skill: https://github.com/<owner>/<repo>/tree/<tag>/health/private-doctor`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/private-doctor`
 - maintainer batch generation:
-  - `python3 scripts/generate_skill_install_manifest.py --repo <owner>/<repo> --ref <tag> --domain health`
+  - `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.1.0 --domain health`
 
 ## Data Root
 

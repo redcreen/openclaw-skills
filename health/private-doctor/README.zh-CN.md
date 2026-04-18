@@ -12,9 +12,9 @@
 ## GitHub 直装
 
 - 正式安装:
-  - `安装技能：https://github.com/<owner>/<repo>/tree/<tag>/health/private-doctor`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/private-doctor`
 - 开发安装:
-  - `安装技能：https://github.com/<owner>/<repo>/tree/main/health/private-doctor`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/main/health/private-doctor`
 - 如果维护者已经发布了 release，可直接把上面的地址粘到 OpenClaw 对话框里。
 
 ## 运行组成

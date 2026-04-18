@@ -22,11 +22,11 @@
 发布后，推荐把具体 skill 的 GitHub tree 地址直接发给用户。
 
 - `health-archive`
-  - `安装技能：https://github.com/<owner>/<repo>/tree/<tag>/health/health-archive`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive`
 - `private-doctor`
-  - `安装技能：https://github.com/<owner>/<repo>/tree/<tag>/health/private-doctor`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/private-doctor`
 - 维护者批量生成:
-  - `python3 scripts/generate_skill_install_manifest.py --repo <owner>/<repo> --ref <tag> --domain health`
+  - `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.1.0 --domain health`
 
 ## 数据根目录
 

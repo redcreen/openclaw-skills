@@ -50,10 +50,10 @@ openclaw-skills/
 发布后，推荐直接把单个 skill 的 GitHub 地址粘到 OpenClaw 对话框里，而不是让用户手动找目录。
 
 - 正式安装建议固定到 tag:
-  - `安装技能：https://github.com/<owner>/<repo>/tree/<tag>/health/health-archive`
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive`
 - 开发安装可以指向 `main`:
-  - `安装技能：https://github.com/<owner>/<repo>/tree/main/health/private-doctor`
-- 维护者可用 `python3 scripts/generate_skill_install_manifest.py --repo <owner>/<repo> --ref <tag>` 批量生成每个 skill 的安装地址和可复制提示词。
+  - `安装技能：https://github.com/redcreen/openclaw-skills/tree/main/health/private-doctor`
+- 维护者可用 `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.1.0` 批量生成每个 skill 的安装地址和可复制提示词。
 
 ## 文档入口
 

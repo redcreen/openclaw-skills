@@ -11,14 +11,14 @@
 正式发布优先固定到 tag：
 
 ```text
-安装技能：https://github.com/<owner>/<repo>/tree/<tag>/health/health-archive
-安装技能：https://github.com/<owner>/<repo>/tree/<tag>/health/private-doctor
+安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive
+安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/private-doctor
 ```
 
 开发调试时可以临时指向 `main`：
 
 ```text
-安装技能：https://github.com/<owner>/<repo>/tree/main/health/health-archive
+安装技能：https://github.com/redcreen/openclaw-skills/tree/main/health/health-archive
 ```
 
 ## 维护者发布步骤
@@ -28,7 +28,7 @@
 3. 运行生成器：
 
 ```bash
-python3 scripts/generate_skill_install_manifest.py --repo <owner>/<repo> --ref v0.1.0 --format markdown
+python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.1.0 --format markdown
 ```
 
 4. 把生成出来的 GitHub URL 或 `安装技能：...` 提示词贴到 release note、README 或交付文档里。
@@ -41,5 +41,5 @@ python3 scripts/generate_skill_install_manifest.py --repo <owner>/<repo> --ref v
 
 ## 当前约束
 
-- 这个仓库现在还没有内建 GitHub 远端元数据，所以 `<owner>/<repo>` 需要在发布时确定
+- 当前绑定仓库是 `redcreen/openclaw-skills`
 - 每个 skill 仍然按目录安装，不能直接把整个 skill 集目录当成一个 skill

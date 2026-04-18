@@ -49,5 +49,5 @@ Available now:
 - `python3 scripts/validate_skill_boundaries.py`
   - detects missing required public skill files
   - detects runtime references across sibling skills or skill sets
-- `python3 scripts/generate_skill_install_manifest.py --repo demo/openclaw-skills --ref v0.1.0 --format json`
+- `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.1.0 --format json`
   - generates per-skill GitHub install URLs and copy-paste prompts

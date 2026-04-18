@@ -7,48 +7,48 @@
 
 ## Current Phase
 
-GitHub-first install routing and release-prep docs on top of the local-first health workspace.
+GitHub-first install routing with a real repo binding and first stable tag.
 
 ## Active Slice
 
-Copy-paste GitHub install manifests and public install docs for installable skills.
+Real GitHub install prompts and first-release binding for installable skills.
 
 ## Current Execution Line
 
-- Objective: make every installable skill advertise a stable GitHub tree URL and OpenClaw-ready install prompt, while keeping tag-first release guidance and skill-level isolation intact
+- Objective: bind the docs and install prompts to the real repository `redcreen/openclaw-skills`, publish the first stable tag, and keep skill-level isolation intact
 - Plan Link: release-facing install routing
 - Runway: one checkpoint-sized execution line
 - Progress: 4 / 4 tasks complete
 - Stop Conditions:
-  - the workspace gains a real GitHub remote and needs release-pinned install manifests
   - install support moves away from GitHub tree URLs
   - a host-specific installer contract replaces the current copy-paste chat entry model
+  - multi-version manifest maintenance needs automation beyond the current generator
 
 ## Execution Tasks
 
-- [x] EL-1 define the GitHub URL shape to use for per-skill install entry points
-- [x] EL-2 add a deterministic manifest generator for installable skills
-- [x] EL-3 update root, skill-set, and per-skill docs with copy-paste install patterns
-- [x] EL-4 add reference and validation coverage for the new install-routing contract
+- [x] EL-1 bind the public repository to `redcreen/openclaw-skills`
+- [x] EL-2 publish the first stable install ref as `v0.1.0`
+- [x] EL-3 replace placeholder install URLs with real copy-paste prompts
+- [x] EL-4 push the release binding to GitHub
 
 ## Development Log Capture
 
 - Trigger Level: high
 - Pending Capture: no
-- Last Entry: `docs/devlog/2026-04-18-github-install-routing.md`
+- Last Entry: `docs/devlog/2026-04-18-github-install-release-binding.md`
 
 ## Architecture Supervision
 - Signal: `green`
-- Signal Basis: install routing now converges on one per-skill GitHub URL contract instead of leaving distribution to ad hoc README guidance
-- Root Cause Hypothesis: asking users to browse the repo manually weakens install consistency and makes skill-level isolation easy to violate
-- Correct Layer: public install docs, a deterministic manifest generator, and tag-first release guidance
-- Automatic Review Trigger: review again when the workspace gets a real GitHub remote or a host-native installer flow
+- Signal Basis: install routing is now bound to a real repo and first stable tag instead of staying template-only
+- Root Cause Hypothesis: template-only docs leave the last mile undone, so users still cannot install from a real URL
+- Correct Layer: real repo binding, real tag, public install docs, and the manifest generator
+- Automatic Review Trigger: review again when a second public release or a non-GitHub install flow appears
 - Escalation Gate: continue automatically
 
 ## Current Escalation State
 - Current Gate: continue automatically
 - Reason: the current work is still converging within the agreed local-first health direction
-- Next Review Trigger: a future slice binds the docs to a real GitHub repo, release tag, or host install flow
+- Next Review Trigger: a future slice adds release automation or a non-GitHub distribution path
 
 ## Done
 
@@ -69,18 +69,21 @@ Copy-paste GitHub install manifests and public install docs for installable skil
 - GitHub install reference docs added
 - `scripts/generate_skill_install_manifest.py` implemented
 - root, `health`, and per-skill READMEs now expose copy-paste GitHub install templates
+- public repo created at `https://github.com/redcreen/openclaw-skills`
+- install docs now point to real `redcreen/openclaw-skills` URLs
+- first stable install tag prepared as `v0.1.0`
 
 ## In Progress
 
-- decide the real GitHub owner/repo and first release tag
 - decide whether to add a one-command release/install rehearsal flow
+- decide whether to commit a generated release manifest alongside each tag
 
 ## Blockers / Open Decisions
 
-- this workspace still has no bound GitHub remote, so public install URLs remain template-driven
 - decide whether release notes should carry generated install manifests directly
+- decide whether to automate README/tag updates for future releases
 
 ## Next 3 Actions
-1. Bind the install docs to a real GitHub owner/repo and release tag.
-2. Run a clean install rehearsal using the generated per-skill GitHub URLs.
-3. Decide whether to add a one-command release helper that emits the manifest as part of tagging.
+1. Run a clean install rehearsal using the `v0.1.0` GitHub URLs.
+2. Decide whether to add a one-command release helper that emits the manifest as part of tagging.
+3. Decide whether future releases should commit a generated install manifest file.

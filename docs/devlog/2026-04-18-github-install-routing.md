@@ -14,8 +14,8 @@
 
 采用 `GitHub tree URL + 单条安装提示词` 作为标准公开安装入口：
 
-- 中文：`安装技能：https://github.com/<owner>/<repo>/tree/<ref>/<skill-path>`
-- English: `Install skill: https://github.com/<owner>/<repo>/tree/<ref>/<skill-path>`
+- 中文：`安装技能：https://github.com/redcreen/openclaw-skills/tree/<ref>/<skill-path>`
+- English: `Install skill: https://github.com/redcreen/openclaw-skills/tree/<ref>/<skill-path>`
 
 对外正式发布优先使用 tag，不默认推荐 `main`。
 
@@ -34,5 +34,5 @@
 
 ## 后续
 
-- 绑定真实 `owner/repo` 和第一个稳定 tag
 - 从真实 GitHub 地址出发跑一次安装验收
+- 决定未来 release 是否自动刷新 README 中的 tag 地址

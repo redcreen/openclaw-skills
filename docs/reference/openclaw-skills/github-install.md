@@ -11,14 +11,14 @@ Users should not need to understand the repository layout. They should be able t
 For published installs, pin to a tag:
 
 ```text
-Install skill: https://github.com/<owner>/<repo>/tree/<tag>/health/health-archive
-Install skill: https://github.com/<owner>/<repo>/tree/<tag>/health/private-doctor
+Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive
+Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/private-doctor
 ```
 
 For development or internal testing, `main` is acceptable:
 
 ```text
-Install skill: https://github.com/<owner>/<repo>/tree/main/health/health-archive
+Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/health-archive
 ```
 
 ## Maintainer Release Steps
@@ -28,7 +28,7 @@ Install skill: https://github.com/<owner>/<repo>/tree/main/health/health-archive
 3. Run the generator:
 
 ```bash
-python3 scripts/generate_skill_install_manifest.py --repo <owner>/<repo> --ref v0.1.0 --format markdown
+python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.1.0 --format markdown
 ```
 
 4. Copy the generated GitHub URL or `Install skill: ...` prompt into release notes, README files, or handoff docs.
@@ -41,5 +41,5 @@ python3 scripts/generate_skill_install_manifest.py --repo <owner>/<repo> --ref v
 
 ## Current Constraint
 
-- this workspace does not yet carry built-in GitHub remote metadata, so `<owner>/<repo>` is decided at publish time
+- the bound public repository is `redcreen/openclaw-skills`
 - installation still happens per skill directory, not per skill-set root

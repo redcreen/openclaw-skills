@@ -49,5 +49,5 @@
 - `python3 scripts/validate_skill_boundaries.py`
   - 检查公开 skill 是否缺少必要文件
   - 检查兄弟 skill 或不同 skill 集之间是否出现运行时引用
-- `python3 scripts/generate_skill_install_manifest.py --repo demo/openclaw-skills --ref v0.1.0 --format json`
+- `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.1.0 --format json`
   - 生成每个 skill 的 GitHub 安装地址和可复制提示词

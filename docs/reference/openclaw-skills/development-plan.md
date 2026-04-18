@@ -100,10 +100,12 @@ Active.
 2. Added GitHub direct-install reference docs.
 3. Added `scripts/generate_skill_install_manifest.py` to generate per-skill install URLs and prompts.
 4. Updated the root README, `health` landing page, and per-skill READMEs with copy-paste GitHub install templates.
+5. Bound the real repository to `redcreen/openclaw-skills`.
+6. Set the first stable install tag to `v0.1.0`.
 
 ### Ordered Queue
 
-1. Bind a real GitHub `owner/repo` and first stable tag.
-2. Run an install acceptance test starting from a GitHub URL.
+1. Run an install acceptance test starting from a GitHub URL.
+2. Decide whether future releases should automatically refresh the tag-pinned README URLs.
 3. Create the `order/` module only when the first order skill is defined.
 4. Add more per-module validation and release guidance as the workspace grows.

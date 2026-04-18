@@ -50,10 +50,10 @@ Install at the skill-folder level, not at the skill-set level.
 After the repository is published, prefer a copy-paste GitHub URL in the OpenClaw chat instead of asking users to browse the repo manually.
 
 - stable install should be pinned to a tag:
-  - `Install skill: https://github.com/<owner>/<repo>/tree/<tag>/health/health-archive`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive`
 - development install may point to `main`:
-  - `Install skill: https://github.com/<owner>/<repo>/tree/main/health/private-doctor`
-- maintainers can generate the exact per-skill prompts with `python3 scripts/generate_skill_install_manifest.py --repo <owner>/<repo> --ref <tag>`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/private-doctor`
+- maintainers can generate the exact per-skill prompts with `python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skills --ref v0.1.0`
 
 ## Skill Documentation
 

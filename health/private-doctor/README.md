@@ -12,9 +12,9 @@
 ## GitHub Direct Install
 
 - stable install:
-  - `Install skill: https://github.com/<owner>/<repo>/tree/<tag>/health/private-doctor`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/private-doctor`
 - development install:
-  - `Install skill: https://github.com/<owner>/<repo>/tree/main/health/private-doctor`
+  - `Install skill: https://github.com/redcreen/openclaw-skills/tree/main/health/private-doctor`
 - once the repository is published, maintainers can paste that URL directly into the OpenClaw chat.
 
 ## Runtime Pieces

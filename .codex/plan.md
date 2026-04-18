@@ -2,27 +2,26 @@
 
 ## Current Phase
 
-Release-facing install routing and install-rehearsal prep.
+Post-release install rehearsal and release automation prep.
 
 ## Current Execution Line
 
-- Objective: bind the new GitHub-install contract to a real published repo/tag and verify that a clean install can be driven from one copy-paste URL per skill
+- Objective: verify that the new `redcreen/openclaw-skills@v0.1.0` install URLs work cleanly and decide how much release automation should wrap the generator and tag flow
 - Plan Link: release/install rehearsal
 - Runway: one checkpoint-sized execution line
 - Progress: 0 / 4 tasks complete
 - Stop Conditions:
-  - the workspace remains unpublished and cannot provide a real GitHub owner/repo
   - the host installer contract changes away from GitHub tree URLs
   - the release process needs credentials or network steps outside this workspace
 - Validation:
-  - generated install URLs resolve to one skill folder each
-  - published install docs prefer tag-based URLs over `main`
+  - generated `v0.1.0` install URLs resolve to one skill folder each
+  - published install docs prefer the real `v0.1.0` tag over `main`
   - a clean install rehearsal succeeds from a copy-paste prompt
 
 ## Execution Tasks
 
-- [ ] EL-1 decide the real GitHub owner/repo and first stable release tag
-- [ ] EL-2 generate release-pinned install prompts for all current skills
+- [x] EL-1 bind the real GitHub owner/repo and first stable release tag
+- [x] EL-2 generate release-pinned install prompts for all current skills
 - [ ] EL-3 run one clean install rehearsal from a GitHub URL
 - [ ] EL-4 decide whether to wrap release tagging and manifest generation into one helper
 
@@ -41,12 +40,12 @@ Release-facing install routing and install-rehearsal prep.
 
 ## Architecture Supervision
 - Signal: `green`
-- Signal Basis: the install contract is now explicit enough to move from documentation-only to publish-and-rehearse work
-- Problem Class: distribution drift and weak install-entry consistency
-- Root Cause Hypothesis: users were expected to browse repo paths manually, which does not scale to reusable public skills
-- Correct Layer: generated per-skill install URLs, tag-first publish guidance, and a release rehearsal
+- Signal Basis: the install contract is now published enough to move from repo binding to install rehearsal and automation
+- Problem Class: release repeatability and install-entry consistency
+- Root Cause Hypothesis: once the first tag exists, the next failure mode is manual drift between tagging, README examples, and generated prompts
+- Correct Layer: install rehearsal plus small release automation around tagging and manifest generation
 - Rejected Shortcut: hand-writing install examples in each README without a reusable generator
-- Automatic Review Trigger: a real remote/tag exists or a non-GitHub distribution path is proposed
+- Automatic Review Trigger: a second release or a non-GitHub distribution path is proposed
 - Escalation Gate: continue automatically
 
 ## Escalation Model

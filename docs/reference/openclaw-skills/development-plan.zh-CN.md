@@ -100,10 +100,12 @@
 2. 增加 GitHub 直装参考文档。
 3. 增加 `scripts/generate_skill_install_manifest.py`，用于批量生成每个 skill 的安装地址和提示词。
 4. 把根 README、`health` landing 和单 skill README 全部接到 GitHub 直装模板上。
+5. 绑定真实仓库 `redcreen/openclaw-skills`。
+6. 确定第一个稳定安装 tag 为 `v0.1.0`。
 
 ### 执行队列
 
-1. 绑定真实 GitHub `owner/repo` 和第一个稳定 tag。
-2. 跑一次从 GitHub 地址出发的安装验收。
+1. 跑一次从 GitHub 地址出发的安装验收。
+2. 决定未来 release 是否自动刷新 README 中的 tag 地址。
 3. 只有在第一个 order skill 明确后才创建 `order/` 模块。
 4. 随着工作区扩展，继续补模块级验证和发布指引。

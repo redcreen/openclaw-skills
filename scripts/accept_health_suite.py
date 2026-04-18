@@ -72,6 +72,26 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def resolve_install_mode(skills_root: Path) -> tuple[str, Path]:
+    installed_dirs = sorted(path.name for path in skills_root.iterdir() if path.is_dir())
+    missing_skills = [skill for skill in EXPECTED_SKILLS if skill not in installed_dirs]
+    if not missing_skills:
+        return "expanded", skills_root
+
+    umbrella_root = skills_root / "health"
+    if not umbrella_root.is_dir():
+        raise AcceptanceError("Missing installed skills: " + ", ".join(missing_skills))
+
+    missing_nested = [skill for skill in EXPECTED_SKILLS if not (umbrella_root / skill).is_dir()]
+    if missing_nested:
+        raise AcceptanceError("Umbrella install is missing nested skills: " + ", ".join(missing_nested))
+    return "umbrella", umbrella_root
+
+
+def skill_script(base_root: Path, skill_name: str, script_name: str) -> str:
+    return str(base_root / skill_name / "scripts" / script_name)
+
+
 def main() -> int:
     args = parse_args()
     temp_root = Path(tempfile.mkdtemp(prefix="health-suite-accept-"))
@@ -98,10 +118,8 @@ def main() -> int:
         )
 
         skills_root = codex_home / "skills"
-        installed_skills = sorted(path.name for path in skills_root.iterdir() if path.is_dir())
-        missing_skills = [skill for skill in EXPECTED_SKILLS if skill not in installed_skills]
-        if missing_skills:
-            raise AcceptanceError("Missing installed skills: " + ", ".join(missing_skills))
+        installed_targets = sorted(path.name for path in skills_root.iterdir() if path.is_dir())
+        install_mode, skill_base_root = resolve_install_mode(skills_root)
 
         data_root = temp_root / "personal health"
         source_dir = temp_root / "sources"
@@ -144,7 +162,7 @@ def main() -> int:
         archive_session = run_json(
             [
                 sys.executable,
-                str(skills_root / "health-archive" / "scripts" / "archive_health_session.py"),
+                skill_script(skill_base_root, "health-archive", "archive_health_session.py"),
                 "--payload-file",
                 str(session_payload_path),
             ],
@@ -173,7 +191,7 @@ def main() -> int:
         profile_update = run_json(
             [
                 sys.executable,
-                str(skills_root / "private-doctor" / "scripts" / "update_health_profile.py"),
+                skill_script(skill_base_root, "private-doctor", "update_health_profile.py"),
                 "--payload-file",
                 str(profile_payload_path),
             ],
@@ -195,7 +213,7 @@ def main() -> int:
         archive_result = run_json(
             [
                 sys.executable,
-                str(skills_root / "health-archive" / "scripts" / "archive_health_record.py"),
+                skill_script(skill_base_root, "health-archive", "archive_health_record.py"),
                 "--payload-file",
                 str(follow_up_archive_path),
             ],
@@ -205,7 +223,7 @@ def main() -> int:
         summary = run_json(
             [
                 sys.executable,
-                str(skills_root / "private-doctor" / "scripts" / "summarize_health_workspace.py"),
+                skill_script(skill_base_root, "private-doctor", "summarize_health_workspace.py"),
                 "--data-root",
                 str(data_root),
                 "--days",
@@ -219,7 +237,7 @@ def main() -> int:
         assessment = run_json(
             [
                 sys.executable,
-                str(skills_root / "private-doctor" / "scripts" / "assess_health_profile.py"),
+                skill_script(skill_base_root, "private-doctor", "assess_health_profile.py"),
                 "--summary-file",
                 str(summary_path),
                 "--language",
@@ -233,7 +251,7 @@ def main() -> int:
         rendered_reply = run_json(
             [
                 sys.executable,
-                str(skills_root / "private-doctor" / "scripts" / "render_doctor_reply.py"),
+                skill_script(skill_base_root, "private-doctor", "render_doctor_reply.py"),
                 "--summary-file",
                 str(summary_path),
                 "--archive-result-file",
@@ -250,7 +268,7 @@ def main() -> int:
         validated_reply = run_json(
             [
                 sys.executable,
-                str(skills_root / "private-doctor" / "scripts" / "validate_doctor_reply.py"),
+                skill_script(skill_base_root, "private-doctor", "validate_doctor_reply.py"),
                 "--reply-file",
                 str(reply_path),
             ],
@@ -260,7 +278,7 @@ def main() -> int:
         review = run_json(
             [
                 sys.executable,
-                str(skills_root / "health-review" / "scripts" / "generate_health_review.py"),
+                skill_script(skill_base_root, "health-review", "generate_health_review.py"),
                 "--data-root",
                 str(data_root),
                 "--mode",
@@ -273,7 +291,7 @@ def main() -> int:
         brief = run_json(
             [
                 sys.executable,
-                str(skills_root / "doctor-brief" / "scripts" / "generate_doctor_brief.py"),
+                skill_script(skill_base_root, "doctor-brief", "generate_doctor_brief.py"),
                 "--data-root",
                 str(data_root),
                 "--days",
@@ -309,7 +327,7 @@ def main() -> int:
         reminder_upsert = run_json(
             [
                 sys.executable,
-                str(skills_root / "health-reminders" / "scripts" / "health_reminders.py"),
+                skill_script(skill_base_root, "health-reminders", "health_reminders.py"),
                 "upsert",
                 "--data-root",
                 str(data_root),
@@ -321,7 +339,7 @@ def main() -> int:
         due_reminders = run_json(
             [
                 sys.executable,
-                str(skills_root / "health-reminders" / "scripts" / "health_reminders.py"),
+                skill_script(skill_base_root, "health-reminders", "health_reminders.py"),
                 "due",
                 "--data-root",
                 str(data_root),
@@ -335,7 +353,7 @@ def main() -> int:
         export_bundle = run_json(
             [
                 sys.executable,
-                str(skills_root / "health-storage-feishu" / "scripts" / "export_health_workspace_bundle.py"),
+                skill_script(skill_base_root, "health-storage-feishu", "export_health_workspace_bundle.py"),
                 "--data-root",
                 str(data_root),
                 "--format",
@@ -348,7 +366,7 @@ def main() -> int:
         restore_bundle = run_json(
             [
                 sys.executable,
-                str(skills_root / "health-storage-feishu" / "scripts" / "import_health_workspace_bundle.py"),
+                skill_script(skill_base_root, "health-storage-feishu", "import_health_workspace_bundle.py"),
                 "--bundle-file",
                 export_bundle["bundle_path"],
                 "--data-root",
@@ -362,7 +380,9 @@ def main() -> int:
             "status": "ok",
             "repo": args.repo,
             "ref": args.ref,
-            "installed_skills": installed_skills,
+            "install_mode": install_mode,
+            "installed_targets": installed_targets,
+            "installed_skills": EXPECTED_SKILLS,
             "suite_install_output": install_output.strip().splitlines(),
             "data_root": str(data_root.resolve()),
             "archive_session_status": archive_session["status"],

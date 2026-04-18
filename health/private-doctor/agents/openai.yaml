@@ -1,0 +1,4 @@
+interface:
+  display_name: "Private Doctor"
+  short_description: "Read local health records and give concise family-doctor guidance"
+  default_prompt: "Use the local health workspace to summarize the user's recent health status, interpret the data, and give a short family-doctor style next step."

@@ -1,0 +1,28 @@
+{
+  "managedBy": "project-assistant",
+  "controlSurfaceVersion": 3,
+  "tier": "large",
+  "officialModules": [
+    "health",
+    "order"
+  ],
+  "surfaceVersions": {
+    "strategy": 1,
+    "programBoard": 1,
+    "deliverySupervision": 1,
+    "ptlSupervision": 1,
+    "workerHandoff": 1,
+    "entryRouting": 1,
+    "moduleDashboard": 1
+  },
+  "requiredFiles": [
+    ".codex/brief.md",
+    ".codex/plan.md",
+    ".codex/status.md",
+    ".codex/COMMANDS.md",
+    ".codex/control-surface.json",
+    ".codex/module-dashboard.md",
+    ".codex/modules/health.md",
+    ".codex/modules/order.md"
+  ]
+}

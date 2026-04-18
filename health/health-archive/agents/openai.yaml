@@ -1,0 +1,4 @@
+interface:
+  display_name: "Health Archive"
+  short_description: "Archive health images and measurements into local records"
+  default_prompt: "Archive this health evidence into the user's local health workspace and report explicit success status."

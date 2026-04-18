@@ -1,0 +1,142 @@
+{
+  "repoKind": "repo",
+  "userCustomized": true,
+  "tier": "large",
+  "officialModules": [
+    "health",
+    "order"
+  ],
+  "rootKeep": [
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "requiredPaths": [
+    "docs/README.md",
+    "docs/README.zh-CN.md",
+    "docs/architecture.md",
+    "docs/architecture.zh-CN.md",
+    "docs/roadmap.md",
+    "docs/roadmap.zh-CN.md",
+    "docs/test-plan.md",
+    "docs/test-plan.zh-CN.md",
+    "docs/reference/README.md",
+    "docs/reference/README.zh-CN.md",
+    "docs/reference/openclaw-skills/development-plan.md",
+    "docs/reference/openclaw-skills/development-plan.zh-CN.md",
+    "docs/workstreams/README.md",
+    "docs/workstreams/README.zh-CN.md",
+    "docs/archive/README.md",
+    "docs/archive/README.zh-CN.md",
+    "docs/devlog/README.md",
+    "docs/devlog/README.zh-CN.md",
+    "health/README.md",
+    "health/README.zh-CN.md"
+  ],
+  "docsHomeLinks": {
+    "en": [
+      "architecture.md",
+      "roadmap.md",
+      "test-plan.md",
+      "reference/README.md"
+    ],
+    "zh": [
+      "architecture.zh-CN.md",
+      "roadmap.zh-CN.md",
+      "test-plan.zh-CN.md",
+      "reference/README.zh-CN.md"
+    ]
+  },
+  "publicDocIncludeGlobs": [
+    "README.md",
+    "README.zh-CN.md",
+    "docs/*.md",
+    "docs/**/*.md",
+    "health/*.md",
+    "health/**/*.md",
+    "order/*.md",
+    "order/**/*.md"
+  ],
+  "publicDocExcludeGlobs": [
+    ".codex/**",
+    "docs/archive/**",
+    "reports/**",
+    "workspace/**",
+    "releases/**",
+    "scripts/**",
+    "src/**",
+    "test/**",
+    "evals/**"
+  ],
+  "ownershipRules": [
+    {
+      "glob": ".codex/*.md",
+      "role": "living"
+    },
+    {
+      "glob": ".codex/**/*.md",
+      "role": "living"
+    },
+    {
+      "glob": "README.md",
+      "role": "durable"
+    },
+    {
+      "glob": "README.zh-CN.md",
+      "role": "durable"
+    },
+    {
+      "glob": "docs/*.md",
+      "role": "durable"
+    },
+    {
+      "glob": "docs/**/*.md",
+      "role": "durable"
+    },
+    {
+      "glob": "health/*.md",
+      "role": "durable"
+    },
+    {
+      "glob": "health/**/*.md",
+      "role": "durable"
+    },
+    {
+      "glob": "order/*.md",
+      "role": "durable"
+    },
+    {
+      "glob": "order/**/*.md",
+      "role": "durable"
+    }
+  ],
+  "questionOwners": {
+    "architecture": {
+      "allowed": [
+        "docs/architecture.md",
+        "docs/architecture.zh-CN.md"
+      ],
+      "tokens": [
+        "architecture"
+      ]
+    },
+    "roadmap": {
+      "allowed": [
+        "docs/roadmap.md",
+        "docs/roadmap.zh-CN.md"
+      ],
+      "tokens": [
+        "roadmap"
+      ]
+    },
+    "test-plan": {
+      "allowed": [
+        "docs/test-plan.md",
+        "docs/test-plan.zh-CN.md"
+      ],
+      "tokens": [
+        "test-plan",
+        "verification"
+      ]
+    }
+  }
+}

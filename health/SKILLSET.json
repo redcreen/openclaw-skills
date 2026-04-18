@@ -1,0 +1,13 @@
+{
+  "kind": "skill-set",
+  "name": "health",
+  "description": "Install the default health skill suite.",
+  "install_paths": [
+    "health/health-archive",
+    "health/private-doctor",
+    "health/health-review",
+    "health/doctor-brief",
+    "health/health-reminders",
+    "health/health-storage-feishu"
+  ]
+}

@@ -38,19 +38,25 @@ Use these scripts instead of freehand file parsing when possible:
    python3 scripts/summarize_health_workspace.py --data-root "$HEALTH_DATA_ROOT"
    ```
 
-2. Render a stable doctor reply from the summary:
+2. For onboarding or baseline doctor intake, assess the profile:
+
+   ```bash
+   python3 scripts/assess_health_profile.py --summary-file /tmp/private-doctor-summary.json --language zh
+   ```
+
+3. Render a stable doctor reply from the summary:
 
    ```bash
    python3 scripts/render_doctor_reply.py --summary-file /tmp/private-doctor-summary.json --language zh --mode routine
    ```
 
-3. Optionally validate the rendered reply:
+4. Optionally validate the rendered reply:
 
    ```bash
    python3 scripts/validate_doctor_reply.py --reply-file /tmp/private-doctor-reply.json
    ```
 
-4. When the user confirms long-lived profile facts, write them with:
+5. When the user confirms long-lived profile facts, write them with:
 
    ```bash
    python3 scripts/update_health_profile.py --payload-file /tmp/private-doctor-profile.json
@@ -89,6 +95,12 @@ Ask a short follow-up only when:
 - profile-critical facts are missing for the specific advice the user asked for
 
 For profile-building, prefer asking only the missing high-value facts instead of dumping a long questionnaire.
+
+During onboarding, do not stop at a missing-fields list. Return:
+
+- a baseline risk view
+- a first-phase plan
+- the next highest-value profile questions
 
 ## Non-Goals
 

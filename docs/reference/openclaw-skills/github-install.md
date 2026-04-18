@@ -1,3 +1,5 @@
+[English](github-install.md) | [中文](github-install.zh-CN.md)
+
 # GitHub Install Guide
 
 This document defines the standard public install entry for this workspace once it is published.
@@ -11,6 +13,7 @@ Users should not need to understand the repository layout. They should be able t
 For published installs, pin to a tag:
 
 ```text
+Install skill suite: https://github.com/redcreen/openclaw-skills/tree/main/health
 Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive
 Install skill: https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/private-doctor
 ```
@@ -42,4 +45,4 @@ python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skil
 ## Current Constraint
 
 - the bound public repository is `redcreen/openclaw-skills`
-- installation still happens per skill directory, not per skill-set root
+- `health/` can now act as a suite-install entry because it contains `SKILLSET.json`, which expands into multiple installed skills

@@ -2,7 +2,7 @@
 
 ## Ownership
 
-Owns all health-related OpenClaw skills under `health/`, including local-first health archiving, profile management, doctor-style interpretation, and later health review or export adapters.
+Owns all health-related OpenClaw skills under `health/`, including local-first archive, family-doctor interpretation, future longitudinal review, clinician briefs, reminders, and optional backup adapters.
 
 ## Current Status
 
@@ -17,23 +17,25 @@ Owns all health-related OpenClaw skills under `health/`, including local-first h
 - `health-archive` has a deterministic local archive script
 - archive format and field normalization references exist
 - archive smoke test passed with deduplication
-- `private-doctor` has a deterministic local summary script
-- `private-doctor` can append confirmed profile facts into `profile.md`
-- `private-doctor` can render and validate stable doctor-style replies
+- `private-doctor` has deterministic local summary, profile-update, reply-render, and reply-validation scripts
 - private-doctor smoke test passed against the same local workspace
-- per-skill GitHub install templates exist in the public docs
-- health skill docs are now bound to real `redcreen/openclaw-skills@v0.1.0` install URLs
+- per-skill GitHub install templates and a real public release exist
+- the roadmap, development plan, and capability map now describe how the full health-agent V1 is supposed to close
 
 ## Remaining Steps
-1. Run a clean GitHub-URL install rehearsal for `health-archive` and `private-doctor`.
-2. Decide how future releases should refresh the tag-pinned install URLs.
-3. Decide how far profile writes should go beyond `profile.md`.
-4. Decide whether a multi-image single-session archive helper is needed.
+1. Add a one-command install flow for the full `health` suite.
+2. Complete proactive onboarding and baseline risk assessment in `private-doctor`.
+3. Add CLI acceptance for archive -> doctor dialogue.
+4. Deliver `health-review`.
+5. Deliver `doctor-brief`.
+6. Deliver `health-reminders`.
+7. Add reset/migration readiness and decide the optional Feishu adapter boundary.
+8. Close health V1 with CLI-first full-suite acceptance.
 
 ## Completion Signal
 
-Baseline complete for archive writes, doctor-side local tooling, and real public install URLs; remaining work is install rehearsal and feature polish.
+The module is complete only when a reset old health agent can be replaced by a one-command-installed skill suite that can archive health inputs, continue family-doctor dialogue, produce longitudinal reviews and clinician briefs, support reminders, and pass the CLI acceptance chain.
 
 ## Next Checkpoint
 
-Verify one clean install path from the real `v0.1.0` GitHub URLs.
+Finish Stage 3: one-command suite install plus doctor-core onboarding and archive-to-dialogue continuity.

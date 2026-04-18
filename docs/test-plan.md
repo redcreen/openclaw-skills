@@ -1,3 +1,5 @@
+[English](test-plan.md) | [中文](test-plan.zh-CN.md)
+
 # Test Plan
 
 ## Scope

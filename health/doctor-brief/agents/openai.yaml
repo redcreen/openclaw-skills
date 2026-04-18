@@ -1,0 +1,4 @@
+interface:
+  display_name: "Doctor Brief"
+  short_description: "Generate clinician-readable health briefs from local records"
+  default_prompt: "Use the local health workspace to generate a concise clinician-readable health brief."

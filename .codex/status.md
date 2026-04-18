@@ -2,53 +2,55 @@
 
 ## Delivery Tier
 - Tier: `large`
-- Why this tier: the repo now needs module-aware governance for isolated skill sets and per-skill distribution docs
+- Why this tier: the repo now has to carry a full health-agent replacement roadmap, staged skill delivery, release packaging, and CLI-first acceptance
 - Last reviewed: 2026-04-18
 
 ## Current Phase
 
-GitHub-first install routing with a real repo binding and first stable tag.
+Health full-capability planning retrofit complete; Stage 3 implementation ready.
 
 ## Active Slice
 
-Real GitHub install prompts and first-release binding for installable skills.
+Health suite install and doctor-core completion.
 
 ## Current Execution Line
 
-- Objective: bind the docs and install prompts to the real repository `redcreen/openclaw-skills`, publish the first stable tag, and keep skill-level isolation intact
-- Plan Link: release-facing install routing
+- Objective: implement one-command suite install, onboarding, initial assessment, and archive-to-doctor continuity for the `health` skill set
+- Plan Link: health suite install and doctor-core completion
 - Runway: one checkpoint-sized execution line
-- Progress: 4 / 4 tasks complete
+- Progress: 0 / 6 tasks complete
 - Stop Conditions:
-  - install support moves away from GitHub tree URLs
-  - a host-specific installer contract replaces the current copy-paste chat entry model
-  - multi-version manifest maintenance needs automation beyond the current generator
+  - suite install needs host support outside the current GitHub + skill-installer model
+  - the medical scope expands beyond the agreed health-agent V1 boundary
+  - migration/reset expectations require product decisions outside this repo
 
 ## Execution Tasks
 
-- [x] EL-1 bind the public repository to `redcreen/openclaw-skills`
-- [x] EL-2 publish the first stable install ref as `v0.1.0`
-- [x] EL-3 replace placeholder install URLs with real copy-paste prompts
-- [x] EL-4 push the release binding to GitHub
+- [ ] EL-1 define and implement the one-command `health` suite install flow
+- [ ] EL-2 expand the baseline health profile schema for onboarding and three-high context
+- [ ] EL-3 add initial risk framing and first-phase planning to `private-doctor`
+- [ ] EL-4 verify image-or-fact archive -> doctor dialogue through CLI
+- [ ] EL-5 decide whether archive needs a multi-image single-session helper
+- [ ] EL-6 refresh release-facing docs and manifests for the suite-install entry
 
 ## Development Log Capture
 
 - Trigger Level: high
 - Pending Capture: no
-- Last Entry: `docs/devlog/2026-04-18-github-install-release-binding.md`
+- Last Entry: `docs/devlog/2026-04-18-health-full-capability-planning-retrofit.md`
 
 ## Architecture Supervision
 - Signal: `green`
-- Signal Basis: install routing is now bound to a real repo and first stable tag instead of staying template-only
-- Root Cause Hypothesis: template-only docs leave the last mile undone, so users still cannot install from a real URL
-- Correct Layer: real repo binding, real tag, public install docs, and the manifest generator
-- Automatic Review Trigger: review again when a second public release or a non-GitHub install flow appears
+- Signal Basis: the roadmap now closes against real health-agent capability, not only repo structure or release wiring
+- Root Cause Hypothesis: the earlier roadmap over-focused on baseline infrastructure and under-specified how to close onboarding, reviews, reminders, and CLI acceptance
+- Correct Layer: roadmap, development plan, module planning, and capability mapping
+- Automatic Review Trigger: review again when a new health skill is added or the suite-install contract changes
 - Escalation Gate: continue automatically
 
 ## Current Escalation State
 - Current Gate: continue automatically
-- Reason: the current work is still converging within the agreed local-first health direction
-- Next Review Trigger: a future slice adds release automation or a non-GitHub distribution path
+- Reason: the planning surface now matches the intended health-agent V1 target and is ready for direct implementation
+- Next Review Trigger: a future slice changes the install model, medical scope, or migration expectations
 
 ## Done
 
@@ -68,22 +70,21 @@ Real GitHub install prompts and first-release binding for installable skills.
 - repo-level boundary validator implemented
 - GitHub install reference docs added
 - `scripts/generate_skill_install_manifest.py` implemented
-- root, `health`, and per-skill READMEs now expose copy-paste GitHub install templates
-- public repo created at `https://github.com/redcreen/openclaw-skills`
-- install docs now point to real `redcreen/openclaw-skills` URLs
-- first stable install tag prepared as `v0.1.0`
+- public repo and `v0.1.0` release published
+- public-doc i18n gate converged and passes
+- health roadmap, development plan, architecture, and capability map now target full health-agent V1 closure
 
 ## In Progress
 
-- decide whether to add a one-command release/install rehearsal flow
-- decide whether to commit a generated release manifest alongside each tag
+- Stage 3 implementation has been defined but not started
+- suite-install packaging and CLI acceptance design still need code
 
 ## Blockers / Open Decisions
 
-- decide whether release notes should carry generated install manifests directly
-- decide whether to automate README/tag updates for future releases
+- choose the exact one-command suite-install surface: bundle manifest, helper script, or both
+- decide how much of Feishu backup/export belongs in Stage 5 versus a later optional adapter release
 
 ## Next 3 Actions
-1. Run a clean install rehearsal using the `v0.1.0` GitHub URLs.
-2. Decide whether to add a one-command release helper that emits the manifest as part of tagging.
-3. Decide whether future releases should commit a generated install manifest file.
+1. Implement the one-command `health` suite install flow.
+2. Expand `private-doctor` onboarding and initial assessment around the health V1 profile schema.
+3. Add a CLI scenario that proves image archive -> doctor dialogue without user manual QA.

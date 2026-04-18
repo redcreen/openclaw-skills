@@ -1,3 +1,5 @@
+[English](github-install.md) | [中文](github-install.zh-CN.md)
+
 # GitHub 安装指引
 
 这份文档定义这个工作区对外发布后的标准安装入口。
@@ -11,6 +13,7 @@
 正式发布优先固定到 tag：
 
 ```text
+安装技能集：https://github.com/redcreen/openclaw-skills/tree/main/health
 安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/health-archive
 安装技能：https://github.com/redcreen/openclaw-skills/tree/v0.1.0/health/private-doctor
 ```
@@ -42,4 +45,4 @@ python3 scripts/generate_skill_install_manifest.py --repo redcreen/openclaw-skil
 ## 当前约束
 
 - 当前绑定仓库是 `redcreen/openclaw-skills`
-- 每个 skill 仍然按目录安装，不能直接把整个 skill 集目录当成一个 skill
+- `health/` 目录现在可以作为 skill 集安装入口，因为其中有 `SKILLSET.json`，installer 会展开成多个 skill 安装

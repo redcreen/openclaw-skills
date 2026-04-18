@@ -1,0 +1,4 @@
+interface:
+  display_name: "Health Storage Feishu"
+  short_description: "Export and restore portable health-workspace bundles"
+  default_prompt: "Use the local health workspace to export or restore a portable backup bundle without making Feishu the primary storage path."

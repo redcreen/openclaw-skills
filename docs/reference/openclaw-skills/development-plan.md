@@ -1,3 +1,5 @@
+[English](development-plan.md) | [中文](development-plan.zh-CN.md)
+
 # Development Plan
 
 ## What This Plan Is For
@@ -12,13 +14,23 @@ This plan turns the roadmap into an ordered execution queue for the workspace.
 
 ## Current Position
 
-The workspace has completed the first functional and install-template pass for `health` and is now in Stage 5 release/guardrail work.
+The workspace has completed the `health` baseline, but it has not yet closed the full intended health-agent capability. The next work is to turn the existing health skill set into a complete, reset-ready family-doctor suite.
 
-## Stage 1: Workspace Governance Baseline
+## Health V1 Closure Target
+
+This roadmap closes only when all of the following are true:
+
+1. After resetting the old health agent, the full `health` suite can be installed with one command.
+2. Once installed, the agent can archive incoming health images or facts and continue the doctor-style dialogue on top of those records.
+3. Longitudinal review, clinician brief, and reminder capabilities are handled by skills instead of the old monolithic agent.
+4. Release readiness is proven by CLI-first acceptance, not by asking the user to perform the basic end-to-end checks manually.
+5. Feishu remains optional for backup or mirroring and does not block the local-first health workflow.
+
+## Stage 1: Workspace and Local-First Baseline
 
 ### Goal
 
-Define the repository as a multi-skill-set workspace with root indexing, durable docs, and module-aware control files.
+Define the repository as a multi-skill-set workspace and establish the local-first health baseline.
 
 ### Status
 
@@ -29,12 +41,13 @@ Complete.
 - root README pair converted into workspace indexes
 - architecture, roadmap, and test-plan pages added
 - module-aware `.codex` layer added
+- local-first health storage anchored on `~/document/personal health`
 
-## Stage 2: Health Skill-Set Baseline
+## Stage 2: Archive and Family-Doctor Baseline
 
 ### Goal
 
-Create `health/` as the first isolated skill-set root with independent public docs and standard skill folders.
+Deliver the first archive-and-doctor loop for `health`.
 
 ### Status
 
@@ -43,69 +56,127 @@ Complete.
 ### Completed Work
 
 1. Created the `health` landing README pair.
-2. Created `health-archive` as a standard skill folder.
-3. Created `private-doctor` as a standard skill folder.
-4. Defined install and storage expectations in the skill-set docs.
+2. Created `health-archive` and `private-doctor` as standard skill folders.
+3. Defined the local storage contract for `~/document/personal health`.
+4. Implemented the archive, summary, profile-update, and reply-rendering scripts.
+5. Published GitHub install entry points and `v0.1.0`.
 
-## Stage 3: Health-Archive Functional Delivery
-
-### Goal
-
-Deliver local-first health archiving with explicit success reporting.
-
-### Status
-
-Complete.
-
-### Completed Work
-
-1. Defined the local storage contract for `~/document/personal health`.
-2. Added an archive format reference and field map.
-3. Implemented `scripts/archive_health_record.py`.
-4. Wired the skill workflow to use the script result as the archive truth source.
-5. Verified archive creation and duplicate replay behavior with a local smoke test.
-
-## Stage 4: Private-Doctor Functional Delivery
+## Stage 3: Health Suite Install and Doctor-Core Completion
 
 ### Goal
 
-Deliver concise family-doctor behavior that explains, advises, and plans instead of acting like a passive recorder.
-
-### Status
-
-Complete.
-
-### Completed Work
-
-1. Added `scripts/summarize_health_workspace.py`.
-2. Added `scripts/update_health_profile.py`.
-3. Added `scripts/render_doctor_reply.py`.
-4. Added `scripts/validate_doctor_reply.py`.
-5. Added doctor workflow, onboarding, and reply-contract references.
-6. Verified summary, profile updates, and doctor-reply rendering against the same local health workspace.
-
-## Stage 5: Future Skill-Set Expansion and Guardrails
-
-### Goal
-
-Add future skill sets without mixing domains or re-opening structure drift.
+Close the core gap between the current skill set and the intended health agent: one-command suite install, proactive onboarding, baseline risk assessment, and doctor dialogue that continues after image archiving.
 
 ### Status
 
 Active.
 
-### Completed Work
+### Existing Base
 
-1. Added `scripts/validate_skill_boundaries.py` for runtime isolation checks.
-2. Added GitHub direct-install reference docs.
-3. Added `scripts/generate_skill_install_manifest.py` to generate per-skill install URLs and prompts.
-4. Updated the root README, `health` landing page, and per-skill READMEs with copy-paste GitHub install templates.
-5. Bound the real repository to `redcreen/openclaw-skills`.
-6. Set the first stable install tag to `v0.1.0`.
+1. `health-archive` already supports verified local-first archive writes.
+2. `private-doctor` already supports basic profile maintenance and doctor-style reply rendering.
+3. The repository is public and already has tag-based install docs.
 
 ### Ordered Queue
 
-1. Run an install acceptance test starting from a GitHub URL.
-2. Decide whether future releases should automatically refresh the tag-pinned README URLs.
-3. Create the `order/` module only when the first order skill is defined.
-4. Add more per-module validation and release guidance as the workspace grows.
+1. Define the `health` suite install contract:
+   - one command installs multiple health skill folders
+   - runtime still stays modular
+   - `health/` is not turned into a fake monolithic skill
+2. Ship the health-suite install entry:
+   - bundle manifest or helper command
+   - release-facing docs for full-suite install
+3. Expand the baseline profile schema for:
+   - identity and goals
+   - blood pressure / lipid / glucose context
+   - current medication
+   - lifestyle and main concerns
+4. Complete the doctor-core behavior in `private-doctor`:
+   - proactive onboarding
+   - baseline risk framing
+   - first-phase action plan
+   - explicit follow-up focus
+5. Add CLI acceptance for the core loop:
+   - image or fact archive
+   - read from the local workspace
+   - continue with doctor-style interpretation and next steps
+6. Decide whether archive needs a multi-image single-session helper as part of the same slice.
+
+### Exit Criteria
+
+- one command can install the full `health` suite
+- after reset, the skill suite can immediately rebuild the core doctor workflow
+- CLI proves image archive -> doctor dialogue without relying on manual user QA
+
+## Stage 4: Longitudinal Review and Clinician Briefs
+
+### Goal
+
+Deliver long-term review, trend follow-up, and clinician-facing outputs.
+
+### Status
+
+Planned.
+
+### Ordered Queue
+
+1. Add `health-review`:
+   - daily review
+   - weekly summary
+   - monthly or stage review
+2. Persist review outputs into the local workspace:
+   - `reviews/`
+   - stable output contract and metadata
+3. Add `doctor-brief`:
+   - clinician-readable brief
+   - stage summary for visits
+4. Persist clinician outputs into the local workspace:
+   - `reports/`
+   - stable doctor-brief format
+5. Add CLI acceptance:
+   - records -> review output
+   - records -> clinician brief
+
+### Exit Criteria
+
+- longitudinal review exists as a first-class skill instead of ad hoc dialogue only
+- clinician-facing summaries are generated from the same local workspace contract
+- the suite now supports ongoing tracking and clinic-prep workflows
+
+## Stage 5: Reminders, Migration, and Health V1 Closeout
+
+### Goal
+
+Deliver reminders, reset/migration readiness, and final acceptance for the skill-based health agent.
+
+### Status
+
+Planned.
+
+### Ordered Queue
+
+1. Add `health-reminders` or an equivalent scheduling contract:
+   - fixed reminders
+   - lightweight fallback reminders
+   - do not push all timing logic into one chat skill
+2. Add reset and migration readiness:
+   - backup flow before resetting the old health agent
+   - Feishu export or backup path
+   - restore path into the local workspace
+3. Decide and, if kept, add optional `health-storage-feishu`:
+   - mirror/export only
+   - never the main source of truth
+4. Build the final CLI acceptance suite:
+   - full-suite install
+   - archive
+   - doctor dialogue
+   - review
+   - clinician brief
+   - reminder basics
+5. Use CLI acceptance as the release gate instead of asking the user to do the foundational testing.
+
+### Exit Criteria
+
+- the old health agent can be reset after backup and replaced by the skill suite
+- the full intended health-agent V1 capability is covered by modular skills
+- readiness is proven by CLI-first acceptance

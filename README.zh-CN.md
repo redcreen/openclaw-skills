@@ -1,3 +1,5 @@
+[English](README.md) | [中文](README.zh-CN.md)
+
 # OpenClaw Skills 工作区
 
 这个仓库是一个面向 OpenClaw 的多 skill 工作区。它按顶层 skill 集来组织不同领域，例如 `health/`、`order/`，同时保证每个具体 skill 都可以单独安装、单独运行。

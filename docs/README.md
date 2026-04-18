@@ -1,3 +1,5 @@
+[English](README.md) | [中文](README.zh-CN.md)
+
 # Documentation
 
 This documentation set explains how the workspace is organized, how new skill sets are added, and how individual skills are installed and validated.
@@ -18,6 +20,7 @@ This documentation set explains how the workspace is organized, how new skill se
 - Roadmap: [roadmap.md](roadmap.md)
 - Chinese roadmap: [roadmap.zh-CN.md](roadmap.zh-CN.md)
 - Development plan: [reference/openclaw-skills/development-plan.md](reference/openclaw-skills/development-plan.md)
+- Health capability map: [reference/openclaw-skills/health-capability-map.md](reference/openclaw-skills/health-capability-map.md)
 
 ## Verification
 

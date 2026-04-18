@@ -1,0 +1,4 @@
+interface:
+  display_name: "Health Review"
+  short_description: "Generate trend-based daily, weekly, and monthly health reviews"
+  default_prompt: "Use the local health workspace to generate a concise daily, weekly, or monthly health review with trend-based follow-up."

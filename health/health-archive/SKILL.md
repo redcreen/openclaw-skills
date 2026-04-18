@@ -50,6 +50,12 @@ Read [references/field-map.md](references/field-map.md) when normalizing extract
 
 6. Use the script result as the only source of truth for user-visible status.
 
+When a single user message contains multiple archive-worthy items, use:
+
+```bash
+python3 scripts/archive_health_session.py --payload-file /tmp/health-archive-session.json
+```
+
 ## Payload Minimum
 
 Every archive payload should include:

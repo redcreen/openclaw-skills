@@ -1,3 +1,5 @@
+[English](architecture.md) | [中文](architecture.zh-CN.md)
+
 # Architecture
 
 ## System Shape
@@ -36,6 +38,8 @@ This repository is a module-aware OpenClaw skill workspace.
 
 - purpose: personal health profile, archive, interpretation, and planning
 - current skills: `health-archive`, `private-doctor`
+- planned skills: `health-review`, `doctor-brief`, `health-reminders`
+- optional adapter: `health-storage-feishu`
 - default external data root: `~/document/personal health`
 - Feishu policy: disabled by default; future optional storage adapter only
 
@@ -51,6 +55,27 @@ This repository is a module-aware OpenClaw skill workspace.
 - a skill may define a default external data root, but installation must let the user override it
 - the `health` set defaults to `~/document/personal health`
 - skill status must be reported from the storage operation that actually happened, not from inference
+
+## Health Suite Distribution Model
+
+- runtime stays split across multiple skills; `health/` is not turned into one fake monolithic skill
+- the distribution layer should support both:
+  - single-skill installation
+  - one-command installation for the full `health` suite
+- suite install means installing multiple skill folders from the same repo and tag, not changing the runtime boundaries
+- after resetting the old health agent, the expected recovery path is the suite-install entry point
+
+## Validation Model
+
+- health V1 cannot rely only on user manual QA
+- readiness should first be proven by a CLI acceptance chain that covers:
+  - suite install
+  - image or fact archive
+  - family-doctor dialogue
+  - longitudinal review
+  - clinician brief
+  - reminder basics
+- user testing should confirm experience quality, not replace foundational functional testing
 
 ## Documentation Model
 

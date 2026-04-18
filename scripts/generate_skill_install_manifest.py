@@ -89,6 +89,18 @@ def build_entries(root: Path, repo: str, ref: str, skill_dirs: list[Path]) -> li
     return entries
 
 
+def build_suite_entry(repo: str, ref: str, domain: str) -> dict[str, str]:
+    github_url = f"https://github.com/{repo}/tree/{ref}/{domain}"
+    return {
+        "skill_set": domain,
+        "skill_name": f"{domain}-suite",
+        "path": domain,
+        "github_url": github_url,
+        "install_prompt_zh": f"安装技能集：{github_url}",
+        "install_prompt_en": f"Install skill suite: {github_url}",
+    }
+
+
 def render_text(repo: str, ref: str, entries: list[dict[str, str]]) -> str:
     lines = [
         f"Repository: {repo}",
@@ -151,6 +163,7 @@ def main(argv: list[str]) -> int:
         return 1
 
     entries = build_entries(root, args.repo, args.ref, skills)
+    suite_entry = build_suite_entry(args.repo, args.ref, args.domain) if args.domain else None
 
     if args.format == "json":
         payload = {
@@ -159,13 +172,19 @@ def main(argv: list[str]) -> int:
             "skill_count": len(entries),
             "skills": entries,
         }
+        if suite_entry is not None:
+            payload["skill_set"] = suite_entry
         print(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True))
         return 0
 
     if args.format == "markdown":
+        if suite_entry is not None:
+            entries = [suite_entry] + entries
         print(render_markdown(args.repo, args.ref, entries))
         return 0
 
+    if suite_entry is not None:
+        entries = [suite_entry] + entries
     print(render_text(args.repo, args.ref, entries))
     return 0
 

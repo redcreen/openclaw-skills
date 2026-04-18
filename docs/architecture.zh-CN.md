@@ -1,3 +1,5 @@
+[English](architecture.md) | [中文](architecture.zh-CN.md)
+
 # 架构说明
 
 ## 系统形态
@@ -36,6 +38,8 @@
 
 - 作用: 个人健康建档、归档、解读和规划
 - 当前 skill: `health-archive`、`private-doctor`
+- 规划中的 skill: `health-review`、`doctor-brief`、`health-reminders`
+- 可选适配器: `health-storage-feishu`
 - 默认外部数据目录: `~/document/personal health`
 - Feishu 策略: 默认关闭，未来只作为可选存储适配器
 
@@ -51,6 +55,27 @@
 - skill 可以定义默认外部数据目录，但安装时必须允许用户覆盖
 - `health` skill 集默认目录是 `~/document/personal health`
 - skill 对“是否记录成功”的反馈必须来自真实写入结果，不能只凭推断
+
+## Health 套件分发模型
+
+- 运行时仍然保持多 skill 结构，不把 `health/` 伪装成单个大 skill
+- 分发层需要同时支持：
+  - 单 skill 安装
+  - 一条命令安装整套 `health` skill 集
+- 整套安装的本质是“同一仓库 / 同一 tag 下安装多个 skill 目录”，不是改变运行时边界
+- 重置旧 health agent 后，预期通过整套安装入口恢复健康能力
+
+## 验证模型
+
+- health V1 不能只靠用户人肉点测
+- readiness 需要先通过 CLI 验收链路证明：
+  - 整套安装
+  - 图片 / 事实归档
+  - 家庭医生对话
+  - 长期复盘
+  - 医生摘要
+  - 提醒基础路径
+- 用户测试应该只承担体验确认，不承担基础功能代测
 
 ## 文档模型
 

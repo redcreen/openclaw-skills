@@ -1,3 +1,5 @@
+[English](README.md) | [中文](README.zh-CN.md)
+
 # 文档首页
 
 这组文档用于说明这个工作区怎么组织、怎么新增 skill 集，以及怎么安装和验证单个 skill。
@@ -18,6 +20,7 @@
 - 路线图: [roadmap.zh-CN.md](roadmap.zh-CN.md)
 - English roadmap: [roadmap.md](roadmap.md)
 - 开发计划: [reference/openclaw-skills/development-plan.zh-CN.md](reference/openclaw-skills/development-plan.zh-CN.md)
+- Health 能力映射: [reference/openclaw-skills/health-capability-map.zh-CN.md](reference/openclaw-skills/health-capability-map.zh-CN.md)
 
 ## 验证
 

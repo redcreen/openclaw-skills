@@ -1,3 +1,5 @@
+[English](test-plan.md) | [中文](test-plan.zh-CN.md)
+
 # 测试计划
 
 ## 范围

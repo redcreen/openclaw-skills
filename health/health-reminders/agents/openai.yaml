@@ -1,0 +1,4 @@
+interface:
+  display_name: "Health Reminders"
+  short_description: "Manage recurring health reminder rules and due checks"
+  default_prompt: "Use the local health workspace to manage reminder rules and tell the user what health reminder is due now."

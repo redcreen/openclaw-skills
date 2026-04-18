@@ -30,7 +30,11 @@
     "docs/devlog/README.md",
     "docs/devlog/README.zh-CN.md",
     "health/README.md",
-    "health/README.zh-CN.md"
+    "health/README.zh-CN.md",
+    "health/health-archive/README.md",
+    "health/health-archive/README.zh-CN.md",
+    "health/private-doctor/README.md",
+    "health/private-doctor/README.zh-CN.md"
   ],
   "docsHomeLinks": {
     "en": [
@@ -48,16 +52,23 @@
   },
   "publicDocIncludeGlobs": [
     "README.md",
-    "README.zh-CN.md",
-    "docs/*.md",
-    "docs/**/*.md",
+    "docs/README.md",
+    "docs/architecture.md",
+    "docs/roadmap.md",
+    "docs/test-plan.md",
+    "docs/reference/*.md",
+    "docs/reference/**/*.md",
+    "docs/workstreams/*.md",
+    "docs/workstreams/**/*.md",
+    "docs/devlog/README.md",
     "health/*.md",
-    "health/**/*.md",
+    "health/*/README.md",
     "order/*.md",
-    "order/**/*.md"
+    "order/*/README.md"
   ],
   "publicDocExcludeGlobs": [
     ".codex/**",
+    "docs/devlog/**",
     "docs/archive/**",
     "reports/**",
     "workspace/**",
@@ -97,7 +108,7 @@
       "role": "durable"
     },
     {
-      "glob": "health/**/*.md",
+      "glob": "health/*/README.md",
       "role": "durable"
     },
     {
@@ -105,7 +116,7 @@
       "role": "durable"
     },
     {
-      "glob": "order/**/*.md",
+      "glob": "order/*/README.md",
       "role": "durable"
     }
   ],

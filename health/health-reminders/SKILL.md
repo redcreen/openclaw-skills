@@ -27,13 +27,13 @@ This skill manages reminder rules for the `health` skill set. It does not replac
 1. Upsert reminder rules:
 
    ```bash
-   python3 scripts/health_reminders.py upsert --payload-file /tmp/health-reminders.json
+   python3 skills/health-reminders/scripts/health_reminders.py upsert --payload-file /tmp/health-reminders.json
    ```
 
 2. Check due reminders:
 
    ```bash
-   python3 scripts/health_reminders.py due --at 2026-04-18T08:00:00+08:00
+   python3 skills/health-reminders/scripts/health_reminders.py due --at 2026-04-18T08:00:00+08:00
    ```
 
 3. Use the script result as the source of truth for:

@@ -108,7 +108,7 @@ If you want the full family-doctor experience, install at least:
 ## Script Example
 
 ```bash
-python3 scripts/archive_health_record.py --payload-file ./health-archive-payload.json
+python3 skills/health-archive/scripts/archive_health_record.py --payload-file /tmp/health-archive-payload.json
 ```
 
 ## Usage Notes

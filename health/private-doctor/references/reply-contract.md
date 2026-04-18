@@ -30,13 +30,13 @@ When building a profile:
 Prefer rendering the user-visible reply from the summary JSON:
 
 ```bash
-python3 scripts/render_doctor_reply.py --summary-file /tmp/private-doctor-summary.json --language zh --mode routine
+python3 skills/private-doctor/scripts/render_doctor_reply.py --summary-file /tmp/private-doctor-summary.json --language zh --mode routine
 ```
 
 If the reply will be shown to a user, prefer validating it too:
 
 ```bash
-python3 scripts/validate_doctor_reply.py --reply-file /tmp/private-doctor-reply.json
+python3 skills/private-doctor/scripts/validate_doctor_reply.py --reply-file /tmp/private-doctor-reply.json
 ```
 
 ## Routine Reply Example

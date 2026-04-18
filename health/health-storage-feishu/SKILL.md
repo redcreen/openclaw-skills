@@ -27,13 +27,13 @@ This skill is the optional backup and migration layer for the `health` skill set
 1. Export a bundle:
 
    ```bash
-   python3 scripts/export_health_workspace_bundle.py --format zip
+   python3 skills/health-storage-feishu/scripts/export_health_workspace_bundle.py --format zip
    ```
 
 2. Restore a bundle:
 
    ```bash
-   python3 scripts/import_health_workspace_bundle.py --bundle-file /tmp/health-bundle.zip --overwrite
+   python3 skills/health-storage-feishu/scripts/import_health_workspace_bundle.py --bundle-file /tmp/health-bundle.zip --overwrite
    ```
 
 ## Reply Contract

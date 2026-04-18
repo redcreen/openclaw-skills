@@ -30,7 +30,7 @@ This skill generates clinician-facing briefs from the local health workspace. It
 2. Run:
 
    ```bash
-   python3 scripts/generate_doctor_brief.py --days 30 --save
+   python3 skills/doctor-brief/scripts/generate_doctor_brief.py --days 30 --save
    ```
 
 3. Use the script result as the source of truth for:

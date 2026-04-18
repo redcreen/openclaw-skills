@@ -42,11 +42,11 @@ Read [references/field-map.md](references/field-map.md) when normalizing extract
 1. Decide whether the input contains archive-worthy health information.
 2. Identify the evidence type.
 3. Extract the key fields that are clear enough to record.
-4. Build a JSON payload for `scripts/archive_health_record.py`.
+4. Build a JSON payload for `skills/health-archive/scripts/archive_health_record.py`.
 5. Run:
 
    ```bash
-   python3 scripts/archive_health_record.py --payload-file ./health-archive-payload.json
+   python3 skills/health-archive/scripts/archive_health_record.py --payload-file /tmp/health-archive-payload.json
    ```
 
 6. Use the script result as the only source of truth for user-visible status.
@@ -54,7 +54,7 @@ Read [references/field-map.md](references/field-map.md) when normalizing extract
 When a single user message contains multiple archive-worthy items, use:
 
 ```bash
-python3 scripts/archive_health_session.py --payload-file ./health-archive-session.json
+python3 skills/health-archive/scripts/archive_health_session.py --payload-file /tmp/health-archive-session.json
 ```
 
 ## Payload Minimum
@@ -97,7 +97,7 @@ Every archive reply must include:
 - `Saved To`: the local file path or logical location that was updated
 - `Doctor Note`: one short interpretation line when the data supports it
 
-Never say something was archived unless `scripts/archive_health_record.py` returned success.
+Never say something was archived unless `skills/health-archive/scripts/archive_health_record.py` returned success.
 
 If archive succeeds and the current interaction is clearly a health-management conversation, do not stop at storage acknowledgment alone. Continue with one short doctor-facing interpretation or hand the turn forward to the family-doctor layer in the same reply.
 

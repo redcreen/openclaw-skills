@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
+import re
 import shutil
 import subprocess
 import sys
@@ -61,6 +61,30 @@ def ensure_installed(workspace: Path) -> list[str]:
     if missing:
         raise VerifyError("Missing installed workspace skills: " + ", ".join(missing))
     return found
+
+
+def ensure_skill_runtime_paths(workspace: Path) -> None:
+    install_root = workspace / "skills"
+    violations: list[str] = []
+    for skill_name in EXPECTED_SKILLS:
+        skill_root = install_root / skill_name
+        if not skill_root.exists():
+            continue
+        markdown_files = [skill_root / "SKILL.md"]
+        references = skill_root / "references"
+        if references.exists():
+            markdown_files.extend(sorted(references.rglob("*.md")))
+        for path in markdown_files:
+            if not path.exists():
+                continue
+            text = path.read_text(encoding="utf-8")
+            if re.search(r"python3\s+scripts/", text):
+                violations.append(str(path))
+    if violations:
+        raise VerifyError(
+            "Installed health skills still contain workspace-broken bare script paths: "
+            + ", ".join(violations)
+        )
 
 
 def create_dummy_sources(source_dir: Path) -> dict[str, str]:
@@ -271,6 +295,7 @@ def main() -> int:
 
     try:
         installed = ensure_installed(workspace)
+        ensure_skill_runtime_paths(workspace)
         acceptance = run_installed_acceptance(workspace)
         result = {
             "status": "ok",

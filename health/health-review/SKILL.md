@@ -32,7 +32,7 @@ This skill turns the local health workspace into review outputs. It is the longi
 2. Run:
 
    ```bash
-   python3 scripts/generate_health_review.py --mode weekly --save
+   python3 skills/health-review/scripts/generate_health_review.py --mode weekly --save
    ```
 
 3. Use the script result as the source of truth for:

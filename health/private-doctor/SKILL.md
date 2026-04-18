@@ -36,31 +36,31 @@ Use these scripts instead of freehand file parsing when possible:
 1. Summarize the local health workspace:
 
    ```bash
-   python3 scripts/summarize_health_workspace.py --data-root "$HEALTH_DATA_ROOT"
+   python3 skills/private-doctor/scripts/summarize_health_workspace.py --data-root "$HEALTH_DATA_ROOT"
    ```
 
 2. For onboarding or baseline doctor intake, assess the profile:
 
    ```bash
-   python3 scripts/assess_health_profile.py --summary-file /tmp/private-doctor-summary.json --language zh
+   python3 skills/private-doctor/scripts/assess_health_profile.py --summary-file /tmp/private-doctor-summary.json --language zh
    ```
 
 3. Render a stable doctor reply from the summary:
 
    ```bash
-   python3 scripts/render_doctor_reply.py --summary-file /tmp/private-doctor-summary.json --language zh --mode routine
+   python3 skills/private-doctor/scripts/render_doctor_reply.py --summary-file /tmp/private-doctor-summary.json --language zh --mode routine
    ```
 
 4. Optionally validate the rendered reply:
 
    ```bash
-   python3 scripts/validate_doctor_reply.py --reply-file /tmp/private-doctor-reply.json
+   python3 skills/private-doctor/scripts/validate_doctor_reply.py --reply-file /tmp/private-doctor-reply.json
    ```
 
 5. When the user confirms long-lived profile facts, write them with:
 
    ```bash
-   python3 scripts/update_health_profile.py --payload-file /tmp/private-doctor-profile.json
+   python3 skills/private-doctor/scripts/update_health_profile.py --payload-file /tmp/private-doctor-profile.json
    ```
 
 The doctor layer may update `profile.md` directly through its own script, but it must not claim that a measurement image was archived unless that archive result is already known.

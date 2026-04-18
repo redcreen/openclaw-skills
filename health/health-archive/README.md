@@ -86,7 +86,7 @@ If you want the full family-doctor experience, install at least:
 
 - install target: `health/health-archive/`
 - required artifact: `SKILL.md`
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - installation rule: let the user choose the data path; do not hardcode a personal path
 
 ## GitHub Direct Install

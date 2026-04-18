@@ -12,7 +12,7 @@ import zipfile
 from pathlib import Path
 
 
-DEFAULT_DATA_ROOT = Path("~/document/personal health").expanduser()
+DEFAULT_DATA_ROOT = Path("~/Documents/personal health").expanduser()
 
 
 class ExportError(Exception):

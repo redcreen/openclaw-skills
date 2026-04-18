@@ -37,7 +37,7 @@ openclaw-skills/
 
 | Skill 集 | 作用 | 已有 Skill | 安装路径 | 使用注意 |
 | --- | --- | --- | --- | --- |
-| [`health`](health/README.zh-CN.md) | 个人健康建档、归档、家庭医生对话、复盘、摘要、提醒和备份 | [`health`](health/README.zh-CN.md)、[`health-archive`](health/health-archive/README.zh-CN.md)、[`private-doctor`](health/private-doctor/README.zh-CN.md)、[`health-review`](health/health-review/README.zh-CN.md)、[`doctor-brief`](health/doctor-brief/README.zh-CN.md)、[`health-reminders`](health/health-reminders/README.zh-CN.md)、[`health-storage-feishu`](health/health-storage-feishu/README.zh-CN.md) | 可直接安装 `health/` 整套入口，或单装 `health/<skill-name>/` | 健康数据默认落到 `~/document/personal health`；安装时允许用户改路径；Feishu 默认关闭 |
+| [`health`](health/README.zh-CN.md) | 个人健康建档、归档、家庭医生对话、复盘、摘要、提醒和备份 | [`health`](health/README.zh-CN.md)、[`health-archive`](health/health-archive/README.zh-CN.md)、[`private-doctor`](health/private-doctor/README.zh-CN.md)、[`health-review`](health/health-review/README.zh-CN.md)、[`doctor-brief`](health/doctor-brief/README.zh-CN.md)、[`health-reminders`](health/health-reminders/README.zh-CN.md)、[`health-storage-feishu`](health/health-storage-feishu/README.zh-CN.md) | 可直接安装 `health/` 整套入口，或单装 `health/<skill-name>/` | 健康数据默认落到 `~/Documents/personal health`；安装时允许用户改路径；Feishu 默认关闭 |
 | `order` | 预留给未来订单相关 skill 集 | 暂无 | 尚未开始 | 后续新增时必须和 `health` 完全隔离 |
 
 ## 安装方式

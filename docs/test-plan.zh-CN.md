@@ -36,7 +36,7 @@
 - Case: 健康数据默认路径允许覆盖
   - Setup: 打开 health 文档
   - Action: 检查安装与配置说明
-  - Expected Result: 默认路径是 `~/document/personal health`，并且安装时允许用户改路径
+  - Expected Result: 默认路径是 `~/Documents/personal health`，并且安装时允许用户改路径
 
 - Case: GitHub 直装入口清晰可复制
   - Setup: 打开根 README、`health/README.zh-CN.md` 和单 skill README

@@ -17,7 +17,7 @@ This skill generates clinician-facing briefs from the local health workspace. It
 
 ## Working Contract
 
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - read the same local health workspace used by the other `health` skills
 - write clinician-ready outputs into `reports/`
 - keep Feishu disabled by default

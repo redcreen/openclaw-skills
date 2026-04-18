@@ -23,7 +23,7 @@ The script accepts a normalized JSON payload and writes to the external health w
 Default data root:
 
 ```text
-~/document/personal health
+~/Documents/personal health
 ```
 
 Managed files:

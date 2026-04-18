@@ -14,13 +14,13 @@ This playbook defines the safe path for replacing the old health agent with the 
 ## Before You Reset The Old Agent
 
 1. Identify where the current health truth still lives:
-   - current local health workspace under `~/document/personal health`
+   - current local health workspace under `~/Documents/personal health`
    - legacy workspace files under `~/.openclaw/workspace-health/`
    - optional Feishu tables or documents that still hold unique records
 2. Export a portable bundle from the current local-first workspace:
 
    ```bash
-   python3 health/health-storage-feishu/scripts/export_health_workspace_bundle.py --data-root "~/document/personal health" --format zip
+   python3 health/health-storage-feishu/scripts/export_health_workspace_bundle.py --data-root "~/Documents/personal health" --format zip
    ```
 
 3. If the legacy workspace still contains notes or reports that are not yet reflected in the local-first workspace, archive that legacy directory separately before reset.
@@ -43,7 +43,7 @@ Restore the bundle into the new local health root:
 ```bash
 python3 health/health-storage-feishu/scripts/import_health_workspace_bundle.py \
   --bundle-file /path/to/health-bundle.zip \
-  --data-root "~/document/personal health" \
+  --data-root "~/Documents/personal health" \
   --overwrite
 ```
 

@@ -14,13 +14,13 @@
 ## 重置旧 Agent 前
 
 1. 先确认当前健康数据还分散在哪些地方：
-   - 当前 local-first 工作区 `~/document/personal health`
+   - 当前 local-first 工作区 `~/Documents/personal health`
    - 旧工作区 `~/.openclaw/workspace-health/`
    - 仍保存独有记录的 Feishu 表或文档
 2. 先把当前 local-first 工作区导出成 bundle：
 
    ```bash
-   python3 health/health-storage-feishu/scripts/export_health_workspace_bundle.py --data-root "~/document/personal health" --format zip
+   python3 health/health-storage-feishu/scripts/export_health_workspace_bundle.py --data-root "~/Documents/personal health" --format zip
    ```
 
 3. 如果旧工作区里还有没有回写到 local-first 工作区的笔记或报告，重置前先单独备份那份目录。
@@ -43,7 +43,7 @@
 ```bash
 python3 health/health-storage-feishu/scripts/import_health_workspace_bundle.py \
   --bundle-file /path/to/health-bundle.zip \
-  --data-root "~/document/personal health" \
+  --data-root "~/Documents/personal health" \
   --overwrite
 ```
 

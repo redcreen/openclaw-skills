@@ -19,10 +19,11 @@ Read [references/reply-contract.md](references/reply-contract.md) before draftin
 - the user asks what recent measurements mean
 - the user wants suggestions, risk framing, or a short health plan
 - new health facts arrive and the reply should include interpretation, not only archiving
+- the user sends the first obvious health image or fact and does not know how to begin
 
 ## Working Contract
 
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - read local files as the main truth source
 - write new long-lived profile facts back to local files when appropriate
 - do not require another skill folder to perform interpretation or profile maintenance
@@ -64,6 +65,14 @@ Use these scripts instead of freehand file parsing when possible:
 
 The doctor layer may update `profile.md` directly through its own script, but it must not claim that a measurement image was archived unless that archive result is already known.
 
+## Proactive Intake Rules
+
+- treat the first health image or health fact as the beginning of doctor intake, not as a malformed request
+- if archive succeeded, continue with interpretation in the same turn
+- if the local profile is sparse, ask only the next 1-3 highest-value questions after the immediate interpretation
+- do not wait for the user to explicitly say `build my profile` or `act as my doctor`
+- if the current input is clearly health-related, default to helping rather than teaching the user how to ask
+
 ## Response Contract
 
 For routine health replies, keep the structure short and stable:
@@ -101,6 +110,13 @@ During onboarding, do not stop at a missing-fields list. Return:
 - a baseline risk view
 - a first-phase plan
 - the next highest-value profile questions
+
+If the user has just sent a first measurement image, prefer:
+
+- brief interpretation now
+- one small step of onboarding next
+
+instead of switching into a long intake form.
 
 ## Non-Goals
 

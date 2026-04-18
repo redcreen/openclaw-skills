@@ -126,7 +126,7 @@
 - 所有运行时行为都收敛在 `health/` 里
 - 不允许把 order 或其他非健康领域逻辑混进这个 skill 集
 - 允许直接安装整套入口 `health/`，也允许单独安装某个子 skill
-- 默认外部数据目录是 `~/document/personal health`，但安装时必须允许用户修改
+- 默认外部数据目录是 `~/Documents/personal health`，但安装时必须允许用户修改
 - V1 默认关闭 Feishu
 
 ## Skill 列表
@@ -160,7 +160,7 @@
 
 ## 数据和隐私
 
-- 默认数据目录是 `~/document/personal health`
+- 默认数据目录是 `~/Documents/personal health`
 - 你的健康数据默认放在本地，不依赖 Feishu 才能工作
 - Feishu 在 V1 里不是主存储，只保留为未来可选备份 / 镜像路径
 - 这也是为什么 roadmap 里把“重置前备份”和“重置后恢复”单独列成一阶段
@@ -190,12 +190,12 @@
 
 ## 数据根目录
 
-这个 skill 集的默认外部数据目录是 `~/document/personal health`。
+这个 skill 集的默认外部数据目录是 `~/Documents/personal health`。
 
 建议结构：
 
 ```text
-~/document/personal health/
+~/Documents/personal health/
   profile.md
   records.md
   raw/

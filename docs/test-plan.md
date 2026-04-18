@@ -36,7 +36,7 @@ Verify workspace structure, documentation routing, suite-install behavior, and t
 - Case: health storage default remains configurable
   - Setup: open health docs
   - Action: inspect install and configuration notes
-  - Expected Result: the default path is `~/document/personal health` and the docs say the user chooses the path during installation
+  - Expected Result: the default path is `~/Documents/personal health` and the docs say the user chooses the path during installation
 
 - Case: GitHub direct-install entry points are copy-paste ready
   - Setup: open the root README, `health/README.md`, and an individual skill README

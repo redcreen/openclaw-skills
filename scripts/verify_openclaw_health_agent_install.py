@@ -15,7 +15,7 @@ from typing import Any
 
 
 DEFAULT_WORKSPACE = Path("~/.openclaw/workspace-health").expanduser()
-DEFAULT_DATA_ROOT = Path("~/document/personal health").expanduser()
+DEFAULT_DATA_ROOT = Path("~/Documents/personal health").expanduser()
 EXPECTED_SKILLS = [
     "health",
     "health-archive",

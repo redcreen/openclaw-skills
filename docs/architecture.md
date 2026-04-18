@@ -43,7 +43,7 @@ This repository is a module-aware OpenClaw skill workspace.
 - suite entry: `health/`
 - current skills: `health-archive`, `private-doctor`, `health-review`, `doctor-brief`, `health-reminders`
 - optional adapter: `health-storage-feishu`
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - Feishu policy: disabled by default; future optional storage adapter only
 
 ### `order`
@@ -56,7 +56,7 @@ This repository is a module-aware OpenClaw skill workspace.
 
 - user data must live outside the repository
 - a skill may define a default external data root, but installation must let the user override it
-- the `health` set defaults to `~/document/personal health`
+- the `health` set defaults to `~/Documents/personal health`
 - skill status must be reported from the storage operation that actually happened, not from inference
 
 ## Health Suite Distribution Model

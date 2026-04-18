@@ -37,7 +37,7 @@ openclaw-skills/
 
 | Skill Set | Purpose | Available Skills | Install Path | Usage Notes |
 | --- | --- | --- | --- | --- |
-| [`health`](health/README.md) | Personal health profile, archiving, family-doctor dialogue, reviews, briefs, reminders, and backup | [`health`](health/README.md), [`health-archive`](health/health-archive/README.md), [`private-doctor`](health/private-doctor/README.md), [`health-review`](health/health-review/README.md), [`doctor-brief`](health/doctor-brief/README.md), [`health-reminders`](health/health-reminders/README.md), [`health-storage-feishu`](health/health-storage-feishu/README.md) | Install `health/` for the whole suite, or install any `health/<skill-name>/` folder directly | Health data defaults to `~/document/personal health`; users choose the path during installation; Feishu stays off by default |
+| [`health`](health/README.md) | Personal health profile, archiving, family-doctor dialogue, reviews, briefs, reminders, and backup | [`health`](health/README.md), [`health-archive`](health/health-archive/README.md), [`private-doctor`](health/private-doctor/README.md), [`health-review`](health/health-review/README.md), [`doctor-brief`](health/doctor-brief/README.md), [`health-reminders`](health/health-reminders/README.md), [`health-storage-feishu`](health/health-storage-feishu/README.md) | Install `health/` for the whole suite, or install any `health/<skill-name>/` folder directly | Health data defaults to `~/Documents/personal health`; users choose the path during installation; Feishu stays off by default |
 | `order` | Reserved for future order-related skills | none yet | not started | Must stay isolated from `health` when added |
 
 ## Install Model

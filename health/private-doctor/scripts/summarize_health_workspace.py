@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 
-DEFAULT_DATA_ROOT = Path("~/document/personal health").expanduser()
+DEFAULT_DATA_ROOT = Path("~/Documents/personal health").expanduser()
 PROFILE_LINE_RE = re.compile(r"^- (?P<timestamp>[^|]+)\|\s*(?P<body>.+)$")
 
 

@@ -41,7 +41,7 @@ Complete.
 - root README pair converted into workspace indexes
 - architecture, roadmap, and test-plan pages added
 - module-aware `.codex` layer added
-- local-first health storage anchored on `~/document/personal health`
+- local-first health storage anchored on `~/Documents/personal health`
 
 ## Stage 2: Archive and Family-Doctor Baseline
 
@@ -57,7 +57,7 @@ Complete.
 
 1. Created the `health` landing README pair.
 2. Created `health-archive` and `private-doctor` as standard skill folders.
-3. Defined the local storage contract for `~/document/personal health`.
+3. Defined the local storage contract for `~/Documents/personal health`.
 4. Implemented the archive, summary, profile-update, and reply-rendering scripts.
 5. Published GitHub install entry points and `v0.1.0`.
 

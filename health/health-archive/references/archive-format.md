@@ -5,13 +5,13 @@
 Default external data root:
 
 ```text
-~/document/personal health
+~/Documents/personal health
 ```
 
 Expected layout:
 
 ```text
-~/document/personal health/
+~/Documents/personal health/
   profile.md
   records.md
   archive-log.jsonl

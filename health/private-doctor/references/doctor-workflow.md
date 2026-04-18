@@ -9,14 +9,16 @@ Use this mode when:
 - the user asks to create or refresh a health profile
 - the local profile is sparse
 - profile-critical facts are missing for the advice they want
+- the user sends a first health image or first health fact and the profile is still sparse
 
 Actions:
 
 1. run `scripts/summarize_health_workspace.py`
 2. inspect `profile_gaps`
-3. ask only the smallest set of missing high-value questions
-4. once the user confirms long-lived facts, write them with `scripts/update_health_profile.py`
-5. give a short baseline interpretation and next step
+3. if a fresh measurement already exists, give a short baseline interpretation first
+4. ask only the smallest set of missing high-value questions
+5. once the user confirms long-lived facts, write them with `scripts/update_health_profile.py`
+6. give a short first-phase next step
 
 ### 2. Routine Follow-Up
 
@@ -53,3 +55,4 @@ Important rule:
 
 - if a measurement archive was not produced by a known successful write result, mark it as `Record Status: not verified in this skill`
 - long-lived profile facts may still be written through `scripts/update_health_profile.py`
+- if archive was verified and the user is clearly in a health flow, continue the doctor dialogue in the same turn instead of stopping at archive status

@@ -17,7 +17,7 @@ This skill manages reminder rules for the `health` skill set. It does not replac
 
 ## Working Contract
 
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - write reminder rules into `reminders/`
 - evaluate due reminders against the local health workspace
 - keep Feishu disabled by default

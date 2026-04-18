@@ -126,7 +126,7 @@ The runtime still stays modular inside `health/`; the suite entry is a distribut
 - keep all runtime behavior inside `health/`
 - do not mix order or other non-health business logic into this set
 - allow either the suite entry `health/` or any nested skill folder to be installed directly
-- default external data root is `~/document/personal health`, but installation must let the user override it
+- default external data root is `~/Documents/personal health`, but installation must let the user override it
 - Feishu is disabled by default in V1
 
 ## Skills
@@ -160,7 +160,7 @@ The runtime still stays modular inside `health/`; the suite entry is a distribut
 
 ## Data and Privacy
 
-- the default data root is `~/document/personal health`
+- the default data root is `~/Documents/personal health`
 - health data lives locally by default and does not require Feishu to work
 - Feishu is not the V1 source of truth; it stays a future optional backup or mirror path
 - this is why backup-before-reset and restore-after-reset are explicitly part of the roadmap
@@ -190,12 +190,12 @@ After publishing, you can send either the full-suite install URL or the exact si
 
 ## Data Root
 
-The default external data root for this skill set is `~/document/personal health`.
+The default external data root for this skill set is `~/Documents/personal health`.
 
 Recommended structure:
 
 ```text
-~/document/personal health/
+~/Documents/personal health/
   profile.md
   records.md
   raw/

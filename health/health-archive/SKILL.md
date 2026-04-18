@@ -14,10 +14,11 @@ This skill turns incoming health evidence into explicit local records. It is the
 - the user sends a health-related image or screenshot
 - the user provides weight, blood pressure, pulse, exercise, sleep, symptom, or medication facts that should be archived
 - the user asks whether something was truly recorded
+- the user sends a likely health image without telling you how to categorize it
 
 ## Storage Contract
 
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - allow the user to override the path during installation
 - store user data outside the repository
 - use local files as the source of truth
@@ -26,7 +27,7 @@ This skill turns incoming health evidence into explicit local records. It is the
 Recommended files and folders:
 
 ```text
-~/document/personal health/
+~/Documents/personal health/
   profile.md
   records.md
   archive-log.jsonl
@@ -98,6 +99,8 @@ Every archive reply must include:
 
 Never say something was archived unless `scripts/archive_health_record.py` returned success.
 
+If archive succeeds and the current interaction is clearly a health-management conversation, do not stop at storage acknowledgment alone. Continue with one short doctor-facing interpretation or hand the turn forward to the family-doctor layer in the same reply.
+
 ## Follow-Up Rules
 
 Ask a follow-up only when one of these blocks correct archiving:
@@ -108,6 +111,12 @@ Ask a follow-up only when one of these blocks correct archiving:
 - the user explicitly asks not to store the item
 
 Otherwise, archive first and keep the reply short.
+
+If the user looks like a first-time or non-expert user:
+
+- default to helping, not teaching prompt syntax
+- after successful archive, continue with one short interpretation
+- let the doctor layer ask only the next highest-value onboarding questions when needed
 
 ## Non-Goals
 

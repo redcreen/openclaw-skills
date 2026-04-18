@@ -39,7 +39,7 @@
 
 - 安装目录: `health/health-storage-feishu/`
 - 必需文件: `SKILL.md`
-- 默认外部数据目录: `~/document/personal health`
+- 默认外部数据目录: `~/Documents/personal health`
 - 安装要求: 必须允许用户自己选数据路径；Feishu 远端写入默认关闭
 
 ## GitHub 直装

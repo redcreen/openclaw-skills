@@ -85,7 +85,7 @@
 
 - 安装目录: `health/health-archive/`
 - 必需文件: `SKILL.md`
-- 默认外部数据目录: `~/document/personal health`
+- 默认外部数据目录: `~/Documents/personal health`
 - 安装要求: 必须让用户自己选择数据路径，不能写死个人路径
 
 ## GitHub 直装

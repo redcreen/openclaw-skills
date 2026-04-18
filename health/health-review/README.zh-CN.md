@@ -62,7 +62,7 @@
 
 - 安装目录: `health/health-review/`
 - 必需文件: `SKILL.md`
-- 默认外部数据目录: `~/document/personal health`
+- 默认外部数据目录: `~/Documents/personal health`
 - 安装要求: 必须允许用户自己选数据路径，且 Feishu 默认关闭
 
 ## GitHub 直装

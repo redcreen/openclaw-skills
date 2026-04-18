@@ -20,7 +20,7 @@ HEALTH_SUITE_SOURCE = REPO_ROOT / "health"
 DEFAULT_WORKSPACE = Path("~/.openclaw/workspace-health").expanduser()
 DEFAULT_WORKSPACE_MIRROR = Path("~/.openclaw/workspace/agents/health").expanduser()
 DEFAULT_AGENT_RUNTIME = Path("~/.openclaw/agents/health").expanduser()
-DEFAULT_DATA_ROOT = Path("~/document/personal health").expanduser()
+DEFAULT_DATA_ROOT = Path("~/Documents/personal health").expanduser()
 
 INJECTED_FILES = [
     "AGENTS.md",
@@ -193,6 +193,9 @@ def update_workspace_prompts(workspace: Path, data_root: Path) -> None:
 - Prefer the installed health skills for archive, profile, review, brief, reminder, and backup tasks.
 - Do not treat Feishu as the primary write path. Any older Feishu-first notes are historical only.
 - On new health input: archive first, then interpret and advise.
+- If the user sends a likely health image or short health fact, assume they want health help even if they do not know the right prompt.
+- Do not wait for the user to say \"act like a family doctor\" or \"please record this\".
+- If the profile is sparse, give a short interpretation first and then ask only the next 1-3 highest-value onboarding questions.
 """
     memory_block = f"""## 当前系统真相（Health V1 升级后）
 
@@ -428,6 +431,122 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def render_record_entry(summary: dict[str, Any]) -> str:
+    def fmt(value: Any) -> str:
+        if isinstance(value, str):
+            return value
+        return json.dumps(value, ensure_ascii=False, sort_keys=True)
+
+    title_time = summary.get("recorded_at") or summary["archived_at"]
+    lines = [
+        f"### {title_time} | {summary['entry_type']}",
+        f"- Entry ID: `{summary['entry_id']}`",
+        f"- Entry Key: `{summary['entry_key']}`",
+        f"- Recorded On: `{summary['recorded_on']}`",
+        f"- Recorded At: `{summary.get('recorded_at') or 'unspecified'}`",
+        f"- Archived At: `{summary['archived_at']}`",
+    ]
+    if summary.get("fields"):
+        lines.append("- Fields:")
+        for key in sorted(summary["fields"]):
+            lines.append(f"  - `{key}`: `{fmt(summary['fields'][key])}`")
+    if summary.get("notes"):
+        lines.append("- Notes:")
+        for note in summary["notes"]:
+            lines.append(f"  - {note}")
+    if summary.get("doctor_note"):
+        lines.append(f"- Doctor Note: {summary['doctor_note']}")
+    if summary.get("raw_files"):
+        lines.append("- Raw Evidence:")
+        for item in summary["raw_files"]:
+            lines.append(f"  - `{item['saved_path']}`")
+    if summary.get("profile_updates"):
+        lines.append("- Profile Updates:")
+        for item in summary["profile_updates"]:
+            lines.append(f"  - `{fmt(item)}`")
+    return "\n".join(lines) + "\n\n"
+
+
+def rebuild_records_markdown(entries: list[dict[str, Any]]) -> str:
+    header = """# Health Records
+
+This file is append-only. Each entry records what was archived and where the raw evidence was saved.
+"""
+    ordered = sorted(
+        entries,
+        key=lambda item: (
+            item.get("recorded_on") or "",
+            item.get("recorded_at") or item.get("archived_at") or "",
+            item.get("entry_type") or "",
+            item.get("entry_id") or "",
+        ),
+    )
+    chunks = [header, "\n"]
+    current_date: str | None = None
+    for entry in ordered:
+        entry_date = entry.get("recorded_on") or "unknown-date"
+        if entry_date != current_date:
+            chunks.append(f"## {entry_date}\n\n")
+            current_date = entry_date
+        chunks.append(render_record_entry(entry))
+    return "".join(chunks)
+
+
+def normalize_existing_local_data(data_root: Path) -> dict[str, Any]:
+    log_path = data_root / "archive-log.jsonl"
+    records_path = data_root / "records.md"
+    profile_path = data_root / "profile.md"
+    if not log_path.exists():
+        return {"normalized": False, "entry_count": 0, "deduplicated_entries": 0}
+
+    by_key: dict[str, dict[str, Any]] = {}
+    order: list[str] = []
+    raw_count = 0
+    for line in log_path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            payload = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(payload, dict):
+            continue
+        entry_key = payload.get("entry_key")
+        if not isinstance(entry_key, str) or not entry_key:
+            continue
+        raw_count += 1
+        payload["data_root"] = str(data_root)
+        payload["profile_path"] = str(profile_path)
+        payload["record_path"] = str(records_path)
+        payload["log_path"] = str(log_path)
+        payload["status"] = "archived"
+        by_key[entry_key] = payload
+        order.append(entry_key)
+
+    if not by_key:
+        return {"normalized": False, "entry_count": 0, "deduplicated_entries": 0}
+
+    seen: set[str] = set()
+    ordered_unique_keys: list[str] = []
+    for entry_key in order:
+        if entry_key in seen:
+            continue
+        seen.add(entry_key)
+        ordered_unique_keys.append(entry_key)
+
+    entries = [by_key[key] for key in ordered_unique_keys]
+    log_path.write_text(
+        "".join(json.dumps(entry, ensure_ascii=False, sort_keys=True) + "\n" for entry in entries),
+        encoding="utf-8",
+    )
+    records_path.write_text(rebuild_records_markdown(entries), encoding="utf-8")
+    return {
+        "normalized": True,
+        "entry_count": len(entries),
+        "deduplicated_entries": raw_count - len(entries),
+    }
+
+
 def migrate_health_data(workspace: Path, data_root: Path) -> dict[str, Any]:
     suite_root = workspace / "skills" / "health"
     session_script = suite_root / "health-archive" / "scripts" / "archive_health_session.py"
@@ -494,6 +613,7 @@ def main() -> int:
         backups = backup_sources(workspace, workspace_mirror, agent_runtime, backup_root)
         installed = install_health_suite(health_source, workspace, backup_root)
         update_workspace_prompts(workspace, data_root)
+        normalized_data = normalize_existing_local_data(data_root)
         migration = migrate_health_data(workspace, data_root)
 
         result: dict[str, Any] = {
@@ -503,6 +623,7 @@ def main() -> int:
             "backup_root": str(backup_root),
             "installed_skills": installed,
             "backed_up": backups,
+            "normalized_data": normalized_data,
             "migration": migration,
         }
 

@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any
 
 
-DEFAULT_DATA_ROOT = Path("~/document/personal health").expanduser()
+DEFAULT_DATA_ROOT = Path("~/Documents/personal health").expanduser()
 SUPPORTED_ENTRY_TYPES = {
     "weight",
     "blood-pressure",

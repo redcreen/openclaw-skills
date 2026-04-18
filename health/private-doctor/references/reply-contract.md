@@ -13,6 +13,7 @@ Keep routine replies short and stable:
 
 When building a profile:
 
+- `Record Status` when a measurement or image was part of this turn
 - `Profile Status`
 - `Doctor View`
 - `Next Questions`
@@ -50,8 +51,8 @@ python3 scripts/validate_doctor_reply.py --reply-file /tmp/private-doctor-reply.
 ## Onboarding Reply Example
 
 ```text
-记录状态：本次未在此 skill 中核验归档
-档案状态：基础档案未完整，仍缺 4 类关键信息。
-医生判断：目前已有最近体重和血压记录，可以先做初步跟踪，但档案还不够完整。
-下一步问题：请先补年龄或出生年、性别、已知疾病、当前用药。
+记录状态：已核验，已入档
+档案状态：基础档案还不完整，但已经可以开始跟踪。
+医生判断：这次体重先记住了；单次数据还不能下趋势结论，但已经可以作为你的健康档案起点。
+下一步问题：请先补年龄或出生年、身高、目前主要目标。
 ```

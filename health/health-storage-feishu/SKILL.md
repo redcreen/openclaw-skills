@@ -17,7 +17,7 @@ This skill is the optional backup and migration layer for the `health` skill set
 
 ## Working Contract
 
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - local-first storage remains the source of truth
 - export and restore bundles live under `exports/`
 - Feishu API writes remain optional and disabled by default

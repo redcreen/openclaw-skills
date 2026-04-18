@@ -1,4 +1,4 @@
 interface:
   display_name: "Health Suite"
   short_description: "Archive health inputs, continue family-doctor dialogue, and manage the local health workspace"
-  default_prompt: "Use the full local-first health suite to archive the user's health inputs, maintain their profile, and continue with concise family-doctor style guidance."
+  default_prompt: "Use the full local-first health suite proactively: when the user sends a likely health image or fact, archive it if possible, continue with family-doctor style interpretation, and ask only the next highest-value onboarding questions when baseline profile data is missing."

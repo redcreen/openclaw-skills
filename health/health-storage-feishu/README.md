@@ -39,7 +39,7 @@ In most cases the result should show:
 
 - install target: `health/health-storage-feishu/`
 - required artifact: `SKILL.md`
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - installation rule: allow the user to choose the data path; remote Feishu writes stay disabled by default
 
 ## GitHub Direct Install

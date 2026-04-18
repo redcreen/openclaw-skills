@@ -62,7 +62,7 @@ For reviews to mean anything, the local workspace should already have records fr
 
 - install target: `health/health-review/`
 - required artifact: `SKILL.md`
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - installation rule: allow the user to choose the data path and keep Feishu disabled by default
 
 ## GitHub Direct Install

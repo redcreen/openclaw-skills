@@ -5,13 +5,13 @@
 默认外部数据目录：
 
 ```text
-~/document/personal health
+~/Documents/personal health
 ```
 
 预期结构：
 
 ```text
-~/document/personal health/
+~/Documents/personal health/
   profile.md
   records.md
   archive-log.jsonl

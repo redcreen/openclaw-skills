@@ -41,7 +41,7 @@
 - 根 README 对改成工作区索引
 - 补齐架构、路线图和测试计划
 - 增加模块化 `.codex` 控制层
-- 把健康数据基线收口到 `~/document/personal health`
+- 把健康数据基线收口到 `~/Documents/personal health`
 
 ## Stage 2: 归档与家庭医生基线
 
@@ -57,7 +57,7 @@
 
 1. 创建 `health` landing README 对。
 2. 创建 `health-archive` 与 `private-doctor` 标准 skill 目录。
-3. 定义 `~/document/personal health` 的本地存储契约。
+3. 定义 `~/Documents/personal health` 的本地存储契约。
 4. 实现归档、医生摘要、档案更新、回复渲染与基础校验脚本。
 5. 公开 GitHub 安装入口并发布 `v0.1.0`。
 

@@ -66,7 +66,7 @@ That way the reminder can flow into recording, interpretation, and review instea
 
 - install target: `health/health-reminders/`
 - required artifact: `SKILL.md`
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - installation rule: allow the user to choose the data path and keep Feishu disabled by default
 
 ## GitHub Direct Install

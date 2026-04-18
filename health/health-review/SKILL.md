@@ -17,7 +17,7 @@ This skill turns the local health workspace into review outputs. It is the longi
 
 ## Working Contract
 
-- default external data root: `~/document/personal health`
+- default external data root: `~/Documents/personal health`
 - read the same local health workspace used by `health-archive` and `private-doctor`
 - write review outputs into `reviews/`
 - keep Feishu disabled by default

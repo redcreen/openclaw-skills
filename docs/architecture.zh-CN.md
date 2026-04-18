@@ -43,7 +43,7 @@
 - 整套入口: `health/`
 - 当前 skill: `health-archive`、`private-doctor`、`health-review`、`doctor-brief`、`health-reminders`
 - 可选适配器: `health-storage-feishu`
-- 默认外部数据目录: `~/document/personal health`
+- 默认外部数据目录: `~/Documents/personal health`
 - Feishu 策略: 默认关闭，未来只作为可选存储适配器
 
 ### `order`
@@ -56,7 +56,7 @@
 
 - 用户数据必须存放在仓库之外
 - skill 可以定义默认外部数据目录，但安装时必须允许用户覆盖
-- `health` skill 集默认目录是 `~/document/personal health`
+- `health` skill 集默认目录是 `~/Documents/personal health`
 - skill 对“是否记录成功”的反馈必须来自真实写入结果，不能只凭推断
 
 ## Health 套件分发模型
